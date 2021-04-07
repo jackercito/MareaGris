@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MareaGris</string>
+    <string name="textUnidad">Unidad</string>
+    <string name="textCantidad">Cantidad</string>
+    <string name="textFecha">Fecha Compra</string>
+    <string name="add_empresa">Agregar Empresa</string>
+</resources>
