@@ -10,7 +10,7 @@ import com.jackercito.mareagris.models.Empresa
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Empresa::class], version = 1, exportSchema = false)
+@Database(entities = [Empresa::class], version = 2, exportSchema = false)
 abstract class MareaGrisDatabase: RoomDatabase() {
     abstract fun empresaDao(): EmpresaDao
 
@@ -31,8 +31,10 @@ abstract class MareaGrisDatabase: RoomDatabase() {
                     context.applicationContext,
                     MareaGrisDatabase::class.java,
                     "word_database"
-                ).addCallback(EmpresaDatabaseCallback(scope))
-                    .build()
+                )
+                        .fallbackToDestructiveMigration()
+                        .addCallback(EmpresaDatabaseCallback(scope))
+                        .build()
                 INSTANCE = instance
                 // return instance
                 instance
@@ -57,9 +59,9 @@ abstract class MareaGrisDatabase: RoomDatabase() {
             empresaDao.deleteAll()
 
             //Añadimos ejemplos
-            var empresa = Empresa(1, "GWS")
+            var empresa = Empresa(0, "GWS", null)
             empresaDao.insertAll(empresa)
-            var empresa2 = Empresa(2, "FFG")
+            var empresa2 = Empresa(0, "FFG", null)
             empresaDao.insertAll(empresa2)
         }
     }

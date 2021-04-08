@@ -10,6 +10,7 @@ buildscript {
         lifecycleVersion = '2.2.0'
         materialVersion = '1.2.1'
         roomVersion = '2.2.5'
+        nav_version = "2.3.1"
         // testing
         junitVersion = '4.13.1'
         espressoVersion = '3.1.0'

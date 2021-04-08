@@ -4,4 +4,12 @@
     <string name="textCantidad">Cantidad</string>
     <string name="textFecha">Fecha Compra</string>
     <string name="add_empresa">Agregar Empresa</string>
+
+    <string name="hint_empresa">Empresa…</string>
+    <string name="btn_crear_empresa">Guardar</string>
+    <string name="empty_not_saved">La empresa no se ha guardado por que los valores están en blanco</string>
+    <string name="add_word">Añadir empresa</string>
+    <string name="select_image">Seleccionar Imagen</string>
+
+    <string name="empty_image_not_select">No se seleccionó ninguna imagen</string>
 </resources>

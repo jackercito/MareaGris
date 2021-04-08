@@ -14,16 +14,16 @@ interface EmpresaDao {
     fun getAll(): Flow<List<Empresa>>
 
     @Query("SELECT * FROM empresa WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<Empresa>
+    fun loadAllByIds(userIds: IntArray): Flow<List<Empresa>>
 
     @Query("SELECT * FROM empresa WHERE nombreEmpresa LIKE :nombreEmpresa LIMIT 1")
-    fun findByNameEmpresa(nombreEmpresa: String): Empresa
+    fun findByNameEmpresa(nombreEmpresa: String): Flow<Empresa>
 
     @Insert
-    fun insertAll(vararg empresa: Empresa)
+    suspend fun insertAll(vararg empresa: Empresa)
 
     @Delete
-    fun delete(empresa: Empresa)
+    suspend fun delete(empresa: Empresa)
 
     @Query("DELETE FROM empresa")
     suspend fun deleteAll()
