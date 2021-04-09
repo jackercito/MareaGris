@@ -6,7 +6,7 @@ import android.view.MenuItem
 import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.jackercito.mareagris.ui.activities.EmpresasListActivity
+import com.jackercito.mareagris.ui.activities.list.EmpresasListActivity
 import com.jackercito.mareagris.viewmodels.EmpresaViewModel
 import com.jackercito.mareagris.viewmodels.EmpresaViewModelFactory
 import java.util.*

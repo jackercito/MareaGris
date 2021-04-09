@@ -1,24 +1,27 @@
 package com.jackercito.mareagris.models
 
+import androidx.room.ColumnInfo
+import androidx.room.PrimaryKey
 import java.util.*
 
 //Clase con valores unicos de cada miniatura
-class Proceso(private val fechaCompra: Date) {
-    private lateinit var fechaFin: Date;
-    private var tiempo: Int = 0;
-    private var diasTranscurridos: Long = 0;
-    private var estado: String = "";
-    private var porcentajeCurso: Double = 0.00
-    private var tiempoCurso: Double = 0.00
-    //Valores en curso
-    private lateinit var fehcaInicio: Date
-    //Otros
-    private lateinit var objetivo: Date
-    private var objetivoCumplido: Boolean = false
-    private var comentarios: String = ""
-    private var foto: String = ""
-
-    private fun setDiasTransucrridos(){
+data class Proceso(
+    @PrimaryKey(autoGenerate = true) val uid: Long,
+    @ColumnInfo(name = "fechaCompra") val fechaCompra: Date,
+    @ColumnInfo(name = "fechaFin") val fechaFin: Date,
+    @ColumnInfo(name = "fehcaInicio") val fehcaInicio: Date,
+    @ColumnInfo(name = "objetivo") val objetivo: Date,
+    @ColumnInfo(name = "tiempo") val tiempo: Int,
+    @ColumnInfo(name = "diasTranscurridos") val diasTranscurridos: Int,
+    @ColumnInfo(name = "porcentajeCurso") val porcentajeCurso: Double,
+    @ColumnInfo(name = "tiempoCurso") val tiempoCurso: Double,
+    @ColumnInfo(name = "objetivoCumplido") val objetivoCumplido: Boolean,
+    @ColumnInfo(name = "estado") val estado: String,
+    @ColumnInfo(name = "comentarios") val comentarios: String,
+    @ColumnInfo(name = "foto") val foto: String,
+    val idFkEscuadra: Long
+) {
+    /*private fun setDiasTransucrridos(){
         this.diasTranscurridos = this.fechaFin.time - this.fechaCompra.time
     }
 
@@ -29,5 +32,5 @@ class Proceso(private val fechaCompra: Date) {
 
     fun setTiempo(tiempo: Int){
         this.tiempo = tiempo
-    }
+    }*/
 }

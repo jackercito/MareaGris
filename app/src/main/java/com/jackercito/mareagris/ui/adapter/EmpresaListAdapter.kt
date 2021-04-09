@@ -1,5 +1,6 @@
 package com.jackercito.mareagris.ui.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,6 @@ import com.jackercito.mareagris.R
 import com.jackercito.mareagris.models.Empresa
 
 class EmpresaListAdapter : ListAdapter<Empresa, EmpresaListAdapter.EmpresaViewHolder>(EmpresasComparador()) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmpresaViewHolder{
         return EmpresaViewHolder.create(parent)
     }
@@ -28,7 +28,12 @@ class EmpresaListAdapter : ListAdapter<Empresa, EmpresaListAdapter.EmpresaViewHo
 
         fun bind(text: String?, url: String?){
             empresaItemView.text = text
-            //imageItemView.setImageURI(url) //Pasar string a uri o uri a string
+
+            if(url != null) {
+                val myUri = Uri.parse("file://$url")
+                imageItemView.setImageURI(myUri) //Pasar string a uri o uri a string
+            }
+
         }
 
         companion object {

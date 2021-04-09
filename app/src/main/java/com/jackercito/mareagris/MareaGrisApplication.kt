@@ -3,6 +3,7 @@ package com.jackercito.mareagris
 import android.app.Application
 import com.jackercito.mareagris.database.MareaGrisDatabase
 import com.jackercito.mareagris.repositories.EmpresaRepository
+import com.jackercito.mareagris.repositories.JuegoRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
@@ -14,4 +15,5 @@ class MareaGrisApplication : Application() {
     // rather than when the application starts
     val database by lazy { MareaGrisDatabase.getDatabase(this, applicationScope) }
     val repository by lazy { EmpresaRepository(database.empresaDao()) }
+    val repositoryJ by lazy { JuegoRepository(database.juegoDao()) }
 }

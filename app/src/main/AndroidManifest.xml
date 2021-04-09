@@ -10,13 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MareaGris">
-        <activity
-            android:name=".ui.activities.EmpresasListActivity"
-            android:parentActivityName=".MainActivity" />
+        <activity android:name=".ui.activities.list.JuegosListActivity"></activity>
 
         <activity
-            android:name=".ui.activities.EmpresaNewActivity"
-            android:parentActivityName=".ui.activities.EmpresasListActivity" />
+            android:name=".ui.activities.list.EmpresasListActivity"
+            android:parentActivityName=".ui.activities.list.EmpresasListActivity" />
 
         <activity
             android:name=".RellenarFicha"

@@ -7,7 +7,6 @@ import androidx.room.Query
 import com.jackercito.mareagris.models.Empresa
 import kotlinx.coroutines.flow.Flow
 
-
 @Dao
 interface EmpresaDao {
     @Query("SELECT * FROM empresa")

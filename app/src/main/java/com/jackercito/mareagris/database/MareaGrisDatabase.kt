@@ -6,13 +6,16 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.jackercito.mareagris.daos.EmpresaDao
+import com.jackercito.mareagris.daos.JuegoDao
 import com.jackercito.mareagris.models.Empresa
+import com.jackercito.mareagris.models.Juego
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Empresa::class], version = 2, exportSchema = false)
+@Database(entities = [Empresa::class, Juego::class], version = 3, exportSchema = false)
 abstract class MareaGrisDatabase: RoomDatabase() {
     abstract fun empresaDao(): EmpresaDao
+    abstract fun juegoDao(): JuegoDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
@@ -33,7 +36,7 @@ abstract class MareaGrisDatabase: RoomDatabase() {
                     "word_database"
                 )
                         .fallbackToDestructiveMigration()
-                        .addCallback(EmpresaDatabaseCallback(scope))
+                        //.addCallback(MareaGrisDatabaseCallback(scope))
                         .build()
                 INSTANCE = instance
                 // return instance
@@ -42,7 +45,7 @@ abstract class MareaGrisDatabase: RoomDatabase() {
         }
     }
 
-    private class EmpresaDatabaseCallback(
+    private class MareaGrisDatabaseCallback(
         private val scope: CoroutineScope
     ) : RoomDatabase.Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
