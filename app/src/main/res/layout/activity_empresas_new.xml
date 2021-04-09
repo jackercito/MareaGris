@@ -7,10 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.EmpresaNewActivity">
 
-    <!--Button to open the image selector-->
-
-    <!--ImageView to preview the selected image-->
-
     <EditText
         android:id="@+id/edt_nueva_empresa"
         android:layout_width="match_parent"

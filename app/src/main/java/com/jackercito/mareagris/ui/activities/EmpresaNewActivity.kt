@@ -41,9 +41,7 @@ class EmpresaNewActivity : AppCompatActivity() {
             if (TextUtils.isEmpty(editEmpresaView.text)) {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
-                val nombreEmpresa = editEmpresaView.text.toString()
-                val imageEmpresa = editEmpresaView.text.toString()
-                val empresa : Empresa = Empresa(0, editEmpresaView.text.toString(), "imageEmpresaView")
+                val empresa : Empresa = Empresa(0, editEmpresaView.text.toString(), imageEmpresaView.toString())
                 replyIntent.putExtra(EXTRA_REPLY, empresa)
                 setResult(Activity.RESULT_OK, replyIntent)
             }

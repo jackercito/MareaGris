@@ -3,6 +3,7 @@ package com.jackercito.mareagris.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -18,19 +19,21 @@ class EmpresaListAdapter : ListAdapter<Empresa, EmpresaListAdapter.EmpresaViewHo
 
     override fun onBindViewHolder(holder: EmpresaViewHolder, position: Int){
         val current = getItem(position)
-        holder.bind(current.nombreEmpresa)
+        holder.bind(current.nombreEmpresa, current.imagen)
     }
 
     class EmpresaViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val empresaItemView: TextView = itemView.findViewById(R.id.textView)
+        private val imageItemView: ImageView = itemView.findViewById(R.id.img_cabecera)
 
-        fun bind(text: String?){
+        fun bind(text: String?, url: String?){
             empresaItemView.text = text
+            //imageItemView.setImageURI(url) //Pasar string a uri o uri a string
         }
 
         companion object {
             fun create(parent: ViewGroup): EmpresaViewHolder {
-                val view : View =LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_item, parent, false)
+                val view : View =LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_empresa_item, parent, false)
                 return EmpresaViewHolder(view)
             }
         }
