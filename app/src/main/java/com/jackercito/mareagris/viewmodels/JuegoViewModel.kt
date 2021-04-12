@@ -18,6 +18,10 @@ class JuegoViewModel (private val repository: JuegoRepository) : ViewModel() {
     fun insert(juego: Juego) = viewModelScope.launch{
         repository.insert(juego)
     }
+
+    fun allJuegosByEmpresa(uid: Long): LiveData<List<Juego>> {
+        return repository.allJuegosByEmpresa(uid).asLiveData()
+    }
 }
 
 class JuegoViewModelFactory(private val repository: JuegoRepository): ViewModelProvider.Factory {

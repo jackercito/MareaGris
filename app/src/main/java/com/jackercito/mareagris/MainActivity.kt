@@ -16,7 +16,7 @@ const val ACTIVITY = "MainActivity"
 class MainActivity : AppCompatActivity() {
     private val nuevaEmpresaActivityRequestCode = 1
     private val empresaViewModel: EmpresaViewModel by viewModels {
-        EmpresaViewModelFactory((application as MareaGrisApplication).repository)
+        EmpresaViewModelFactory((application as MareaGrisApplication).repositoryEmpresa)
     }
     private fun setupActionBar() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

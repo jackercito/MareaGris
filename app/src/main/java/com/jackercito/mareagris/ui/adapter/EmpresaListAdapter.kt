@@ -12,34 +12,48 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jackercito.mareagris.R
 import com.jackercito.mareagris.models.Empresa
 
-class EmpresaListAdapter : ListAdapter<Empresa, EmpresaListAdapter.EmpresaViewHolder>(EmpresasComparador()) {
+
+class EmpresaListAdapter(private val onClick: (Empresa) -> Unit) : ListAdapter<Empresa, EmpresaListAdapter.EmpresaViewHolder>(EmpresasComparador()) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmpresaViewHolder{
-        return EmpresaViewHolder.create(parent)
+        return EmpresaViewHolder.create(parent, onClick)
     }
 
     override fun onBindViewHolder(holder: EmpresaViewHolder, position: Int){
         val current = getItem(position)
-        holder.bind(current.nombreEmpresa, current.imagen)
+        holder.bind(current)
+
     }
 
-    class EmpresaViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class EmpresaViewHolder(itemView: View, val onClick: (Empresa) -> Unit): RecyclerView.ViewHolder(itemView) {
         private val empresaItemView: TextView = itemView.findViewById(R.id.textView)
         private val imageItemView: ImageView = itemView.findViewById(R.id.img_cabecera)
+        private var currentEmpresa: Empresa? = null
 
-        fun bind(text: String?, url: String?){
-            empresaItemView.text = text
+        init {
+            itemView.setOnClickListener {
+                currentEmpresa?.let {
+                    onClick(it)
+                }
+            }
+        }
 
-            if(url != null) {
-                val myUri = Uri.parse("file://$url")
+        fun bind(empresa: Empresa?){
+            currentEmpresa = empresa
+            empresaItemView.text = empresa?.nombreEmpresa
+
+            if(empresa?.imagen != null) {
+                val uri = empresa.imagen
+                val myUri = Uri.parse("file://$uri")
                 imageItemView.setImageURI(myUri) //Pasar string a uri o uri a string
             }
 
         }
 
         companion object {
-            fun create(parent: ViewGroup): EmpresaViewHolder {
+            fun create(parent: ViewGroup, onClick: (Empresa) -> Unit): EmpresaViewHolder {
                 val view : View =LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_empresa_item, parent, false)
-                return EmpresaViewHolder(view)
+                return EmpresaViewHolder(view, onClick)
             }
         }
     }

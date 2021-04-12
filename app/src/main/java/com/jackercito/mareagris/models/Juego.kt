@@ -10,11 +10,5 @@ data class Juego (
     @PrimaryKey(autoGenerate = true) val uid: Long,
     @ColumnInfo(name = "nombreJuego") val nombreJuego: String,
     @ColumnInfo(name = "imagen") val imagen: String,
-    val idFkEmpresa: Long
-): Serializable {
-    /*var listaEjercito = mutableListOf<Ejercito>()
-
-    fun anadirEjercito(ejercito: Ejercito){
-        this.listaEjercito.add(ejercito)
-    }*/
-}
+    var idFkEmpresa: Long
+): Serializable

@@ -7,9 +7,14 @@
 
     <string name="hint_empresa">Empresa…</string>
     <string name="btn_crear_empresa">Guardar</string>
-    <string name="empty_not_saved">La empresa no se ha guardado por que los valores están en blanco</string>
+    <string name="empty_not_saved">La empresa no se ha guardado porque los valores están en blanco</string>
     <string name="add_word">Añadir empresa</string>
     <string name="select_image">Seleccionar Imagen</string>
+
+    <string name="hint_juego">Empresa…</string>
+    <string name="btn_crear_juego">Guardar</string>
+    <string name="empty_juego_not_saved">El juego no se ha guardado porque los valores están en blanco</string>
+    <string name="add_juego">Añadir juego</string>
 
     <string name="empty_image_not_select">No se seleccionó ninguna imagen</string>
     <!-- TODO: Remove or change this placeholder text -->

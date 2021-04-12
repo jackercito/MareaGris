@@ -5,12 +5,16 @@ import com.jackercito.mareagris.daos.JuegoDao
 import com.jackercito.mareagris.models.Juego
 import kotlinx.coroutines.flow.Flow
 
-class JuegoRepository (private val juegoDao: JuegoDao) {
+class JuegoRepository(private val juegoDao: JuegoDao) {
     val allJuegos: Flow<List<Juego>> = juegoDao.getAll()
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insert(juego: Juego){
         juegoDao.insertAll(juego)
+    }
+
+    fun allJuegosByEmpresa(idFkEmpresa: Long): Flow<List<Juego>> {
+        return juegoDao.getJuegosByEmpresa(idFkEmpresa)
     }
 }

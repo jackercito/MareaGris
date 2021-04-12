@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.news.EmpresaNewActivity">
+    tools:context=".ui.activities.news.JuegoNewActivity">
 
     <EditText
-        android:id="@+id/edt_nueva_empresa"
+        android:id="@+id/edt_nuevo_juego"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/big_padding"
@@ -32,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_nueva_empresa" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_nuevo_juego" />
 
     <ImageView
         android:id="@+id/IVPreviewImage"
@@ -46,11 +46,11 @@
         app:layout_constraintVertical_bias="0.114" />
 
     <Button
-        android:id="@+id/btn_crear_empresa"
+        android:id="@+id/btn_crear_juego"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/big_padding"
-        android:text="@string/btn_crear_empresa"
+        android:text="@string/btn_crear_juego"
         android:textColor="@color/buttonLabel"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="16dp" />

@@ -3,8 +3,6 @@ package com.jackercito.mareagris.ui.activities.list
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -20,11 +18,12 @@ import com.jackercito.mareagris.viewmodels.EmpresaViewModel
 import com.jackercito.mareagris.viewmodels.EmpresaViewModelFactory
 
 const val LOG_ACTIVITY_2 = "EmpresasListActivity"
+const val EMPRESA_ID = "empresa id"
 
 class EmpresasListActivity : AppCompatActivity() {
     private val nuevaEmpresaActivityRequestCode = 1
     private val empresaViewModel: EmpresaViewModel by viewModels {
-        EmpresaViewModelFactory((application as MareaGrisApplication).repository)
+        EmpresaViewModelFactory((application as MareaGrisApplication).repositoryEmpresa)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +31,7 @@ class EmpresasListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_empresas_list)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = EmpresaListAdapter()
+        val adapter = EmpresaListAdapter { empresa -> adapterOnClick(empresa) }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -46,12 +45,12 @@ class EmpresasListActivity : AppCompatActivity() {
             val intent = Intent(this@EmpresasListActivity, EmpresaNewActivity::class.java)
             startActivityForResult(intent, nuevaEmpresaActivityRequestCode)
         }
+    }
 
-        val linearLayout : LinearLayout = findViewById(R.id.ll_empresa)
-        linearLayout.setOnClickListener{
-            val intent = Intent(this@EmpresasListActivity, JuegosListActivity::class.java)
-            startActivity(intent)
-        }
+    private fun adapterOnClick(empresa: Empresa) {
+        val intent = Intent(this, JuegosListActivity()::class.java)
+        intent.putExtra(EMPRESA_ID, empresa.uid)
+        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -59,10 +58,6 @@ class EmpresasListActivity : AppCompatActivity() {
 
         if(requestCode == nuevaEmpresaActivityRequestCode && resultCode == Activity.RESULT_OK){
             data?.getSerializableExtra(EmpresaNewActivity.EXTRA_REPLY)?.let {
-                //val empresa = Empresa(0, it, null)
-                Log.d(LOG_ACTIVITY_2, "hi!")
-                Log.d(LOG_ACTIVITY_2, it.toString())
-                Log.d(LOG_ACTIVITY_2, (it as Empresa).toString())
                 empresaViewModel.insert(it as Empresa)
             }
         } else {

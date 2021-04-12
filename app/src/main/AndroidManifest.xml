@@ -10,16 +10,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MareaGris">
-        <activity android:name=".ui.activities.list.JuegosListActivity"></activity>
-
+        <activity android:name=".ui.activities.news.JuegoNewActivity"></activity>
+        <activity
+            android:name=".ui.activities.news.EmpresaNewActivity"
+            android:parentActivityName=".ui.activities.list.EmpresasListActivity" />
         <activity
             android:name=".ui.activities.list.EmpresasListActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ui.activities.list.JuegosListActivity"
             android:parentActivityName=".ui.activities.list.EmpresasListActivity" />
-
         <activity
             android:name=".RellenarFicha"
             android:parentActivityName=".MainActivity" />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

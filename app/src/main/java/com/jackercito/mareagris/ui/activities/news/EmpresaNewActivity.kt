@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -19,8 +18,6 @@ import com.jackercito.mareagris.R
 import com.jackercito.mareagris.models.Empresa
 import java.io.*
 import java.util.*
-
-const val LOG_ACTIVITY = "EmpresaNewActivity"
 
 class EmpresaNewActivity : AppCompatActivity() {
     private lateinit var editEmpresaView: EditText
@@ -65,9 +62,6 @@ class EmpresaNewActivity : AppCompatActivity() {
         if(requestCode == SELECT_PICTURE && resultCode == Activity.RESULT_OK){
             val selectImage : Uri? = data?.data;
             if(selectImage != null){
-                //val uri:Uri = saveImageToInternalStorage(selectImage)
-                //imageEmpresaView.setImageURI(uri)
-
                 val imageStream: InputStream? = contentResolver.openInputStream(selectImage);
                 val selectedImage: Bitmap = BitmapFactory.decodeStream(imageStream);
                 val newUri : Uri? = saveImageToInternalStorage(selectedImage)
@@ -107,7 +101,6 @@ class EmpresaNewActivity : AppCompatActivity() {
             // Close stream
             stream.close()
         } catch (e: IOException){ // Catch the exception
-            Log.e(LOG_ACTIVITY, e.toString())
             e.printStackTrace()
         }
 
