@@ -14,7 +14,7 @@ class FaccionRespository (private val faccionDao: FaccionDao) {
         faccionDao.insertAllFacciones(faccion)
     }
 
-    fun allFaccionesByEjercito(idFkEjercito: Long) {
-        faccionDao.getFaccionesByEjercito(idFkEjercito)
+    fun allFaccionesByEjercito(idFkEjercito: Long): Flow<List<Faccion>> {
+        return faccionDao.getFaccionesByEjercito(idFkEjercito)
     }
 }
