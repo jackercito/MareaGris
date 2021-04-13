@@ -8,7 +8,8 @@ import androidx.room.PrimaryKey
 data class Ejercito (
     @PrimaryKey(autoGenerate = true) val uid: Long,
     @ColumnInfo(name = "nombreEjercito") val nombreEjercito: String,
-    val idFkJuego: Long
+    @ColumnInfo(name = "imagen") val imagen: String?,
+    var idFkJuego: Long
 ) {
     /*var listaFaccion = mutableListOf<Faccion>()
 

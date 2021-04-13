@@ -12,35 +12,47 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jackercito.mareagris.R
 import com.jackercito.mareagris.models.Juego
 
-class JuegoListAdapter : ListAdapter<Juego, JuegoListAdapter.JuegoViewHolder>(JuegosComparador()) {
+class JuegoListAdapter(private val onClick: (Juego) -> Unit) : ListAdapter<Juego, JuegoListAdapter.JuegoViewHolder>(JuegosComparador()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JuegoViewHolder {
-        return JuegoViewHolder.create(parent)
+        return JuegoViewHolder.create(parent, onClick)
     }
 
     override fun onBindViewHolder(holder: JuegoViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current.nombreJuego, current.imagen)
+        holder.bind(current)
     }
 
-    class JuegoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class JuegoViewHolder(itemView: View, val onClick: (Juego) -> Unit) :
+        RecyclerView.ViewHolder(itemView) {
         private val empresaItemView: TextView = itemView.findViewById(R.id.textView)
         private val imageItemView: ImageView = itemView.findViewById(R.id.img_cabecera)
+        private var currentJuego: Juego? = null
 
-        fun bind(text: String?, url: String?) {
-            empresaItemView.text = text
+        init {
+            itemView.setOnClickListener {
+                currentJuego?.let {
+                    onClick(it)
+                }
+            }
+        }
 
-            if (url != null) {
-                val myUri = Uri.parse("file://$url")
+        fun bind(juego: Juego) {
+            currentJuego = juego
+            empresaItemView.text = juego.nombreJuego
+
+            if (juego?.imagen != null) {
+                val uri = juego.imagen
+                val myUri = Uri.parse("file://$uri")
                 imageItemView.setImageURI(myUri) //Pasar string a uri o uri a string
             }
         }
 
         companion object {
-            fun create(parent: ViewGroup): JuegoViewHolder {
+            fun create(parent: ViewGroup, onClick: (Juego) -> Unit): JuegoViewHolder {
                 //Hay que cambiar el primer argumento a su recylcerview correspondiente (no creado aún)
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.recyclerview_juego_item, parent, false)
-                return JuegoViewHolder(view)
+                return JuegoViewHolder(view, onClick)
             }
         }
     }

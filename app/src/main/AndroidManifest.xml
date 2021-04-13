@@ -10,15 +10,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MareaGris">
-        <activity android:name=".ui.activities.news.JuegoNewActivity"></activity>
+        <activity
+            android:name=".ui.activities.news.EjercitoNewActivity"
+            android:parentActivityName=".ui.activities.list.EjercitoListActivity" />
+
+        <activity
+            android:name=".ui.activities.list.FaccionListActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".ui.activities.news.EjercitoNewActivity" />
+
+        <activity
+            android:name=".ui.activities.list.EjercitoListActivity"
+            android:parentActivityName=".ui.activities.list.JuegosListActivity" />
+        <activity
+            android:name=".ui.activities.news.JuegoNewActivity"
+            android:parentActivityName=".ui.activities.list.JuegosListActivity" />
         <activity
             android:name=".ui.activities.news.EmpresaNewActivity"
             android:parentActivityName=".ui.activities.list.EmpresasListActivity" />
         <activity
             android:name=".ui.activities.list.EmpresasListActivity"
+            android:launchMode="singleTop"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ui.activities.list.JuegosListActivity"
+            android:launchMode="singleTop"
             android:parentActivityName=".ui.activities.list.EmpresasListActivity" />
         <activity
             android:name=".RellenarFicha"

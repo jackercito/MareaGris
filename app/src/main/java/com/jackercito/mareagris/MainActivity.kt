@@ -26,12 +26,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //var unidad = Unidad("nombre", "tipo1", 5)
-        //var escuadra = Escuadra("Escuadra1", 5, unidad, Date(System.currentTimeMillis()))
-        //var empresa = Empresa(1, "GWS")
-
-        //setupActionBar();
-
         val btn : Button = findViewById(R.id.button)
         btn.setOnClickListener{
             val intent = Intent(this@MainActivity, EmpresasListActivity::class.java)

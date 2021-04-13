@@ -11,12 +11,14 @@
     <string name="add_word">Añadir empresa</string>
     <string name="select_image">Seleccionar Imagen</string>
 
-    <string name="hint_juego">Empresa…</string>
+    <string name="hint_juego">Juego…</string>
     <string name="btn_crear_juego">Guardar</string>
     <string name="empty_juego_not_saved">El juego no se ha guardado porque los valores están en blanco</string>
     <string name="add_juego">Añadir juego</string>
 
     <string name="empty_image_not_select">No se seleccionó ninguna imagen</string>
+
+    <string name="add_ejercito">Añadir ejercito</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

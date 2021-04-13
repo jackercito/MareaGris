@@ -17,7 +17,6 @@ import com.jackercito.mareagris.ui.adapter.EmpresaListAdapter
 import com.jackercito.mareagris.viewmodels.EmpresaViewModel
 import com.jackercito.mareagris.viewmodels.EmpresaViewModelFactory
 
-const val LOG_ACTIVITY_2 = "EmpresasListActivity"
 const val EMPRESA_ID = "empresa id"
 
 class EmpresasListActivity : AppCompatActivity() {

@@ -18,8 +18,9 @@ import com.jackercito.mareagris.viewmodels.JuegoViewModel
 import com.jackercito.mareagris.viewmodels.JuegoViewModelFactory
 import kotlin.properties.Delegates
 
+const val JUEGO_ID = "juego id"
+
 class JuegosListActivity : AppCompatActivity() {
-    private val TAG = "JuegosListActivity"
     private val nuevoJuegoActivityRequestCode = 1
     private var currentEmpresaId by Delegates.notNull<Long>()
     private val juegoViewModel: JuegoViewModel by viewModels {
@@ -30,10 +31,8 @@ class JuegosListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_juegos_list)
 
-        //currentEmpresaId = null
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerviewJuegos)
-        val adapter = JuegoListAdapter()
+        val adapter = JuegoListAdapter { juego -> adapterOnClick(juego) }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -48,13 +47,19 @@ class JuegosListActivity : AppCompatActivity() {
             startActivityForResult(intent, nuevoJuegoActivityRequestCode)
         }
 
-        currentEmpresaId?.let {
+        currentEmpresaId.let {
             juegoViewModel.allJuegosByEmpresa(it).observe(this){ juego ->
-                juego?.let {
-                    adapter.submitList(it)
+                juego?.let { juegos ->
+                    adapter.submitList(juegos)
                 }
             }
         }
+    }
+
+    private fun adapterOnClick(juego: Juego){
+        val intent = Intent(this, EjercitoListActivity()::class.java)
+        intent.putExtra(JUEGO_ID, juego.uid)
+        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -62,9 +67,8 @@ class JuegosListActivity : AppCompatActivity() {
 
         if(requestCode == nuevoJuegoActivityRequestCode && resultCode == Activity.RESULT_OK){
             data?.getSerializableExtra(JuegoNewActivity.EXTRA_REPLY)?.let {
-                var j : Juego = it as Juego
-                j.idFkEmpresa = currentEmpresaId
-                juegoViewModel.insert(it as Juego)
+                (it as Juego).idFkEmpresa = currentEmpresaId
+                juegoViewModel.insert(it)
             }
         } else {
             Toast.makeText(
