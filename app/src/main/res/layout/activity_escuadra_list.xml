@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.list.FaccionListActivity">
+    tools:context=".ui.activities.list.EscuadraListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewFacciones"
+        android:id="@+id/recyclerview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/recycleview_faccion_item"
+        tools:listitem="@layout/recyclerview_empresa_item"
         android:padding="@dimen/big_padding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:contentDescription="@string/add_faccion"
+        android:contentDescription="@string/add_escuadra"
         android:src="@drawable/ic_add"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

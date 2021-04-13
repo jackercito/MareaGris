@@ -9,16 +9,37 @@
     <string name="btn_crear_empresa">Guardar</string>
     <string name="empty_not_saved">La empresa no se ha guardado porque los valores están en blanco</string>
     <string name="add_word">Añadir empresa</string>
-    <string name="select_image">Seleccionar Imagen</string>
 
     <string name="hint_juego">Juego…</string>
     <string name="btn_crear_juego">Guardar</string>
     <string name="empty_juego_not_saved">El juego no se ha guardado porque los valores están en blanco</string>
     <string name="add_juego">Añadir juego</string>
 
-    <string name="empty_image_not_select">No se seleccionó ninguna imagen</string>
 
+    <!-- Nombre de los activitys en la barNav -->
+    <string name="activity_name_list_juegos">Lista de Juegos</string>
+    <string name="activity_name_list_facciones">Lista de Facciones</string>
+    <string name="activity_name_list_ejercitos">Lista de Ejercitos</string>
+    <string name="activity_name_list_empresas">Lista de Empresas</string>
+    <string name="activity_name_list_escuadras">Lista de Escuadras</string>
+
+    <!-- Activity Ejercito New -->
     <string name="add_ejercito">Añadir ejercito</string>
+    <string name="hint_ejercito">Ejercito…</string>
+
+    <!-- Activity Faccion New -->
+    <string name="add_faccion">Añadir ejercito</string>
+    <string name="hint_faccion">Ejercito…</string>
+
+    <!-- Activity Escuadra New -->
+    <string name="add_escuadra">Añadir escuadra</string>
+    <string name="hint_escuadra">Escuadra…</string>
+
+    <!-- String Genericos -->
+    <string name="empty_image_not_select">No se seleccionó ninguna imagen</string>
+    <string name="btn_guardar">Guardar</string>
+    <string name="select_image">Seleccionar Imagen</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

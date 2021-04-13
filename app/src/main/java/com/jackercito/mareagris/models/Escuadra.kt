@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
 data class Escuadra(
@@ -19,7 +20,7 @@ data class Escuadra(
     @ColumnInfo(name = "entidadUnica") val entidadUnica: Boolean,
     @Embedded val unidad: Unidad,
     val idFkFaccion: Long
-) {
+): Serializable {
     /*private var listaProceso: MutableList<Proceso> = this.rellenarProcesos(cantidad, fechaCompra);
 
     private fun rellenarProcesos(cantidad: Int, fechaCompra: Date): MutableList<Proceso> {

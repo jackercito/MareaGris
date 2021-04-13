@@ -6,4 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.news.EjercitoNewActivity">
 
+    <EditText
+        android:id="@+id/edt_nuevo_ejercito"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_padding"
+        android:hint="@string/hint_ejercito"
+        android:inputType="textAutoComplete"
+        android:minHeight="@dimen/min_height"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/btn_selec_img"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/select_image"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_nuevo_ejercito" />
+
+    <ImageView
+        android:id="@+id/IVPreviewImage"
+        android:layout_width="344dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_crear_ejercito"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_selec_img"
+        app:layout_constraintVertical_bias="0.114" />
+
+    <Button
+        android:id="@+id/btn_crear_ejercito"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_padding"
+        android:text="@string/btn_guardar"
+        android:textColor="@color/buttonLabel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

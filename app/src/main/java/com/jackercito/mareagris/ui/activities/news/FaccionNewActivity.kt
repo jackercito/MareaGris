@@ -15,41 +15,43 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jackercito.mareagris.R
-import com.jackercito.mareagris.models.Juego
+import com.jackercito.mareagris.models.Faccion
 import java.io.*
 import java.util.*
 
-class JuegoNewActivity : AppCompatActivity() {
-    private lateinit var edtJuegoView: EditText
-    private lateinit var imageJuegoView: ImageView
-    private lateinit var uriPass: String
+class FaccionNewActivity : AppCompatActivity() {
+    private lateinit var edtFaccionView: EditText
+    private lateinit var imgFaccionView: ImageView
+    private lateinit var uriPass : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_juego_new)
+        setContentView(R.layout.activity_faccion_new)
 
-        edtJuegoView = findViewById(R.id.edt_nuevo_juego)
-        imageJuegoView = findViewById(R.id.IVPreviewImage)
+        edtFaccionView = findViewById(R.id.edt_nueva_faccion)
+        imgFaccionView = findViewById(R.id.IVPreviewImage)
 
-        val btnSelectImage  = findViewById<Button>(R.id.btn_selec_img)
+        val btnSelectImage = findViewById<Button>(R.id.btn_selec_img)
         btnSelectImage.setOnClickListener{
             val imageIntent = Intent()
 
-            imageIntent.type = "image/*"
-            imageIntent.action = Intent.ACTION_GET_CONTENT
+            with(imageIntent){
+                type = "image/*"
+                action = Intent.ACTION_GET_CONTENT
+            }
 
             startActivityForResult(Intent.createChooser(imageIntent, "Seleccionar una imagen"), SELECT_PICTURE)
         }
 
-        val btnCreateJuego = findViewById<Button>(R.id.btn_crear_juego)
-        btnCreateJuego.setOnClickListener{
+        val btnCrearFaccion = findViewById<Button>(R.id.btn_crear_faccion)
+        btnCrearFaccion.setOnClickListener{
             val replyIntent = Intent()
 
-            if(TextUtils.isEmpty(edtJuegoView.text)){
+            if(TextUtils.isEmpty(edtFaccionView.text)){
                 setResult(Activity.RESULT_CANCELED, replyIntent)
-            } else {
-                val juego: Juego = Juego(0, edtJuegoView.text.toString(), uriPass, 0)
-                replyIntent.putExtra(EXTRA_REPLY, juego)
+            }else {
+                val faccion = Faccion(0, edtFaccionView.text.toString(), uriPass, 0)
+                replyIntent.putExtra(EXTRA_REPLY, faccion)
                 setResult(Activity.RESULT_OK, replyIntent)
             }
             finish()
@@ -60,13 +62,13 @@ class JuegoNewActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == SELECT_PICTURE && resultCode == Activity.RESULT_OK){
-            val selectImage : Uri? = data?.data
+            val selectImage: Uri? = data?.data
             if(selectImage != null){
-                val imageStream: InputStream? = contentResolver.openInputStream(selectImage)
+                val imageStream : InputStream? = contentResolver.openInputStream(selectImage)
                 val selectedImage: Bitmap = BitmapFactory.decodeStream(imageStream)
                 val newUri: Uri? = saveImageToInternalStorage(selectedImage)
 
-                imageJuegoView.setImageURI(newUri)
+                imgFaccionView.setImageURI(newUri)
             } else {
                 Toast.makeText(
                     applicationContext,
@@ -76,8 +78,9 @@ class JuegoNewActivity : AppCompatActivity() {
             }
         }
     }
+
     //Para ver más sobre esta funcion ir a EmpresaNewActivity
-    private fun saveImageToInternalStorage(bitmap: Bitmap): Uri{
+    private fun saveImageToInternalStorage(bitmap: Bitmap): Uri {
         val wrapper = ContextWrapper(applicationContext)
         var file = wrapper.getDir("images", Context.MODE_PRIVATE)
 

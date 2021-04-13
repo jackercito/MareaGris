@@ -29,7 +29,7 @@ class JuegosListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_juegos_list)
+        setContentView(R.layout.activity_juego_list)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerviewJuegos)
         val adapter = JuegoListAdapter { juego -> adapterOnClick(juego) }

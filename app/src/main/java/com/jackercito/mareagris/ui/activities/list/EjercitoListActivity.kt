@@ -33,7 +33,6 @@ class EjercitoListActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerviewEjercitos)
         val adapter = EjercitoListAdapter{ ejercito -> adapterOnClick(ejercito) }
-
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 

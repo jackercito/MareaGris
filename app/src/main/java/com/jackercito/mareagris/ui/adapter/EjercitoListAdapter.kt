@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -37,6 +36,7 @@ class EjercitoListAdapter(private val onClick: (Ejercito) -> Unit) : ListAdapter
         }
 
         fun bind(ejercito: Ejercito){
+            currentEjercito = ejercito
             ejercitoItemView.text = ejercito.nombreEjercito
 
             if(ejercito.imagen != null){
@@ -49,7 +49,7 @@ class EjercitoListAdapter(private val onClick: (Ejercito) -> Unit) : ListAdapter
         companion object {
             fun create(parent: ViewGroup, onClick: (Ejercito) -> Unit): EjercitoViewHolder {
                 val view : View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.recyclerview_ejercito_itmem, parent, false)
+                    .inflate(R.layout.recyclerview_ejercito_item, parent, false)
                 return EjercitoViewHolder(view, onClick)
             }
         }

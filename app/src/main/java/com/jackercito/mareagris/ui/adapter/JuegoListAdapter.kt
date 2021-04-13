@@ -22,8 +22,7 @@ class JuegoListAdapter(private val onClick: (Juego) -> Unit) : ListAdapter<Juego
         holder.bind(current)
     }
 
-    class JuegoViewHolder(itemView: View, val onClick: (Juego) -> Unit) :
-        RecyclerView.ViewHolder(itemView) {
+    class JuegoViewHolder(itemView: View, val onClick: (Juego) -> Unit) : RecyclerView.ViewHolder(itemView) {
         private val empresaItemView: TextView = itemView.findViewById(R.id.textView)
         private val imageItemView: ImageView = itemView.findViewById(R.id.img_cabecera)
         private var currentJuego: Juego? = null

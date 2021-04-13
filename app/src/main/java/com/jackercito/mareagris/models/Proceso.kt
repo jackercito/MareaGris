@@ -3,6 +3,7 @@ package com.jackercito.mareagris.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 import java.util.*
 
 @Entity
@@ -22,4 +23,4 @@ data class Proceso(
     @ColumnInfo(name = "comentarios") val comentarios: String,
     @ColumnInfo(name = "foto") val foto: String,
     val idFkEscuadra: Long,
-)
+): Serializable
