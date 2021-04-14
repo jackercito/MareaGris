@@ -39,7 +39,7 @@ class JuegoListAdapter(private val onClick: (Juego) -> Unit) : ListAdapter<Juego
             currentJuego = juego
             empresaItemView.text = juego.nombreJuego
 
-            if (juego?.imagen != null) {
+            if (juego.imagen != null) {
                 val uri = juego.imagen
                 val myUri = Uri.parse("file://$uri")
                 imageItemView.setImageURI(myUri) //Pasar string a uri o uri a string

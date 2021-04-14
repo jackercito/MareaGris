@@ -28,11 +28,11 @@ class JuegoNewActivity : AppCompatActivity() {
     private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if(result.resultCode == Activity.RESULT_OK){
             val data: Intent? = result.data
-            val selectImage : Uri? = data?.data;
+            val selectImage : Uri? = data?.data
             if(selectImage != null){
-                val imageStream: InputStream? = contentResolver.openInputStream(selectImage);
-                val selectedImage: Bitmap = BitmapFactory.decodeStream(imageStream);
-                val newUri : Uri? = saveImageToInternalStorage(selectedImage)
+                val imageStream: InputStream? = contentResolver.openInputStream(selectImage)
+                val selectedImage: Bitmap = BitmapFactory.decodeStream(imageStream)
+                val newUri : Uri = saveImageToInternalStorage(selectedImage)
 
                 imageJuegoView.setImageURI(newUri)
             }
@@ -69,7 +69,7 @@ class JuegoNewActivity : AppCompatActivity() {
             if(TextUtils.isEmpty(edtJuegoView.text)){
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
-                val juego: Juego = Juego(0, edtJuegoView.text.toString(), uriPass, 0)
+                val juego = Juego(0, edtJuegoView.text.toString(), uriPass, 0)
                 replyIntent.putExtra(EXTRA_REPLY, juego)
                 setResult(Activity.RESULT_OK, replyIntent)
             }
@@ -98,6 +98,5 @@ class JuegoNewActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_REPLY = "com.jackercito.mareagris.empresalistsql.REPLY"
-        const val SELECT_PICTURE = 200
     }
 }

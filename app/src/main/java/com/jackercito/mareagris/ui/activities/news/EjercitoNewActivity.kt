@@ -32,7 +32,7 @@ class EjercitoNewActivity : AppCompatActivity() {
             if(selectImage != null){
                 val imageStream : InputStream? = contentResolver.openInputStream(selectImage)
                 val selectedImage: Bitmap = BitmapFactory.decodeStream(imageStream)
-                val newUri: Uri? = saveImageToInternalStorage(selectedImage)
+                val newUri: Uri = saveImageToInternalStorage(selectedImage)
 
                 imgEjercitoView.setImageURI(newUri)
             }
@@ -69,7 +69,7 @@ class EjercitoNewActivity : AppCompatActivity() {
             if(TextUtils.isEmpty(edtEjercitoView.text)){
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
-                val ejercito : Ejercito = Ejercito(0, edtEjercitoView.text.toString(), uriPass, 0)
+                val ejercito = Ejercito(0, edtEjercitoView.text.toString(), uriPass, 0)
                 replyIntent.putExtra(EXTRA_REPLY, ejercito)
                 setResult(Activity.RESULT_OK, replyIntent)
             }

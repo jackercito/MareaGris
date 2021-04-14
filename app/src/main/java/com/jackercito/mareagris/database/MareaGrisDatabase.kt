@@ -65,22 +65,5 @@ abstract class MareaGrisDatabase: RoomDatabase() {
                 }
             }
         }
-
-        suspend fun populateDatabaseEmpresa(empresaDao: EmpresaDao){
-            //Borrar todo el contenido
-            empresaDao.deleteAll()
-
-            //Añadimos ejemplos
-            var empresa = Empresa(0, "GWS", null)
-            empresaDao.insertAll(empresa)
-            var empresa2 = Empresa(0, "FFG", null)
-            empresaDao.insertAll(empresa2)
-        }
-
-        suspend fun populateDatabaseJuego(empresaDao: EmpresaDao){
-            //Borrar todo el contenido
-            empresaDao.deleteAll()
-
-        }
     }
 }

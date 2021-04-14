@@ -30,9 +30,9 @@ class FaccionNewActivity : AppCompatActivity() {
             val data: Intent? = result.data
             val selectImage : Uri? = data?.data;
             if(selectImage != null){
-                val imageStream: InputStream? = contentResolver.openInputStream(selectImage);
-                val selectedImage: Bitmap = BitmapFactory.decodeStream(imageStream);
-                val newUri : Uri? = saveImageToInternalStorage(selectedImage)
+                val imageStream: InputStream? = contentResolver.openInputStream(selectImage)
+                val selectedImage: Bitmap = BitmapFactory.decodeStream(imageStream)
+                val newUri : Uri = saveImageToInternalStorage(selectedImage)
 
                 imgFaccionView.setImageURI(newUri)
             }

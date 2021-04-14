@@ -22,7 +22,6 @@ import kotlin.properties.Delegates
 const val JUEGO_ID = "juego id"
 
 class JuegosListActivity : AppCompatActivity() {
-    private val nuevoJuegoActivityRequestCode = 1
     private var currentEmpresaId by Delegates.notNull<Long>()
     private val juegoViewModel: JuegoViewModel by viewModels {
         JuegoViewModelFactory((application as MareaGrisApplication).repositoryJuego)

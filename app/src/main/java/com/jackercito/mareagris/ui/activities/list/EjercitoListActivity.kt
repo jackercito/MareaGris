@@ -60,7 +60,6 @@ class EjercitoListActivity : AppCompatActivity() {
         val btnFab: FloatingActionButton = findViewById(R.id.fab)
         btnFab.setOnClickListener{
             val intent = Intent(this@EjercitoListActivity, EjercitoNewActivity::class.java )
-            //startActivityForResult(intent, nuevoEjercitoActivityRequestCode)
             resultLauncher.launch(intent)
         }
 

@@ -1,7 +1,6 @@
 package com.jackercito.mareagris.ui.activities.news
 
 import android.app.Activity
-import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -29,8 +28,8 @@ class EscuadraNewActivity : AppCompatActivity() {
         etPlannedDate.setOnClickListener{ showDatePickerDialog() }
 
         etNombreEscuadra = findViewById(R.id.ti_nombre_sec_escuadra)
-        etNombreUnidad = findViewById(R.id.ti_nombre_sec_escuadra)
-        etTipo = findViewById(R.id.ti_nombre_unidad)
+        etNombreUnidad = findViewById(R.id.ti_nombre_unidad)
+        etTipo = findViewById(R.id.ti_tipo_escuadra)
         etCantidad = findViewById(R.id.ti_cantidad)
         etDificultad = findViewById(R.id.ti_dificultad)
 
@@ -55,13 +54,13 @@ class EscuadraNewActivity : AppCompatActivity() {
     }
 
     private fun showDatePickerDialog() {
-        val newFragment = DatePickerFragment.newInstance(DatePickerDialog.OnDateSetListener { _, year, month, day ->
+        val newFragment = DatePickerFragment.newInstance { _, year, month, day ->
             // +1 because January is zero
-            val cero = if(month + 1 <= 9) "0" else ""
-            val selectedDate = "${day.toString()}/$cero${month + 1}/$year"
+            val cero = if (month + 1 <= 9) "0" else ""
+            val selectedDate = "$day/$cero${month + 1}/$year"
             etPlannedDate = findViewById(R.id.ti_fecha_compra)
             etPlannedDate.setText(selectedDate)
-        })
+        }
 
         newFragment.show(supportFragmentManager, "datePicker")
     }

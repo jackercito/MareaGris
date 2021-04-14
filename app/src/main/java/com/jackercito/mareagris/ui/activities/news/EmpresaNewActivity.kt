@@ -28,11 +28,11 @@ class EmpresaNewActivity : AppCompatActivity() {
     private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if(result.resultCode == Activity.RESULT_OK){
             val data: Intent? = result.data
-            val selectImage : Uri? = data?.data;
+            val selectImage : Uri? = data?.data
             if(selectImage != null){
-                val imageStream: InputStream? = contentResolver.openInputStream(selectImage);
-                val selectedImage: Bitmap = BitmapFactory.decodeStream(imageStream);
-                val newUri : Uri? = saveImageToInternalStorage(selectedImage)
+                val imageStream: InputStream? = contentResolver.openInputStream(selectImage)
+                val selectedImage: Bitmap = BitmapFactory.decodeStream(imageStream)
+                val newUri : Uri = saveImageToInternalStorage(selectedImage)
 
                 imageEmpresaView.setImageURI(newUri)
             }
@@ -69,7 +69,7 @@ class EmpresaNewActivity : AppCompatActivity() {
             if (TextUtils.isEmpty(editEmpresaView.text)) {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
-                val empresa : Empresa = Empresa(0, editEmpresaView.text.toString(), uriPass)
+                val empresa = Empresa(0, editEmpresaView.text.toString(), uriPass)
                 replyIntent.putExtra(EXTRA_REPLY, empresa)
                 setResult(Activity.RESULT_OK, replyIntent)
             }
@@ -111,6 +111,5 @@ class EmpresaNewActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_REPLY = "com.jackercito.mareagris.empresalistsql.REPLY"
-        const val SELECT_PICTURE = 200
     }
 }

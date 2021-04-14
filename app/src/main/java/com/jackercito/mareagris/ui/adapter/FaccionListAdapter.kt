@@ -37,9 +37,9 @@ class FaccionListAdapter(private val onClick: (Faccion) -> Unit): ListAdapter<Fa
 
         fun bind(faccion : Faccion){
             currentFaccion = faccion
-            faccionItemView.text = faccion.nombreFaccion.toString()
+            faccionItemView.text = faccion.nombreFaccion
 
-            if(faccion?.imagen != null){
+            if(faccion.imagen != null){
                 val uri = faccion.imagen
                 val myUri = Uri.parse("file://$uri")
                 imageItemView.setImageURI(myUri)
@@ -47,7 +47,7 @@ class FaccionListAdapter(private val onClick: (Faccion) -> Unit): ListAdapter<Fa
         }
 
         companion object{
-            fun create(parent: ViewGroup, onClick: (Faccion) -> Unit) : FaccionListAdapter.FaccionViewHolder{
+            fun create(parent: ViewGroup, onClick: (Faccion) -> Unit) : FaccionViewHolder{
                 val view : View = LayoutInflater.from(parent.context).inflate(R.layout.recycleview_faccion_item, parent, false)
                 return FaccionViewHolder(view, onClick)
             }

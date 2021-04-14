@@ -22,7 +22,6 @@ import kotlin.properties.Delegates
 const val FACCION_ID = "faccion id"
 
 class FaccionListActivity : AppCompatActivity() {
-    private val nuevaFaccionActivityResquestCode = 1
     private var currentEjercito by Delegates.notNull<Long>()
     private val faccionViewModel: FaccionViewModel by viewModels {
         FaccionViewModelFactory((application as MareaGrisApplication).repositoryFaccion)
@@ -74,7 +73,7 @@ class FaccionListActivity : AppCompatActivity() {
     }
 
     private fun adapterOnClick(faccion: Faccion) {
-        val intent = Intent(this, EscuadraListActivity::class.java);
+        val intent = Intent(this, EscuadraListActivity::class.java)
         intent.putExtra(FACCION_ID, faccion.uid)
         startActivity(intent)
     }

@@ -40,7 +40,7 @@ class EjercitoListAdapter(private val onClick: (Ejercito) -> Unit) : ListAdapter
             ejercitoItemView.text = ejercito.nombreEjercito
 
             if(ejercito.imagen != null){
-                var uri = ejercito.imagen
+                val uri = ejercito.imagen
                 val myUri = Uri.parse("file://$uri")
                 imageItemView.setImageURI(myUri)
             }

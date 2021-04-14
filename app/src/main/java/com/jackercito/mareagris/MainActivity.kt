@@ -11,8 +11,6 @@ import com.jackercito.mareagris.viewmodels.EmpresaViewModel
 import com.jackercito.mareagris.viewmodels.EmpresaViewModelFactory
 import java.util.*
 
-const val ACTIVITY = "MainActivity"
-
 class MainActivity : AppCompatActivity() {
     private val nuevaEmpresaActivityRequestCode = 1
     private val empresaViewModel: EmpresaViewModel by viewModels {

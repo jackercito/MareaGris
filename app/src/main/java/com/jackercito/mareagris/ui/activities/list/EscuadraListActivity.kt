@@ -26,7 +26,6 @@ import kotlin.properties.Delegates
 const val ESCUADRA_ID = "escuadra id"
 
 class EscuadraListActivity : AppCompatActivity() {
-    private val nuevaEscuadraActivityRequestCode = 1
     private var currentFaccionId by Delegates.notNull<Long>()
     private val escuadraViewModel: EscuadraViewModel by viewModels{
         EscuadraViewModelFactory((application as MareaGrisApplication).repositoryEscuadra)
@@ -49,7 +48,7 @@ class EscuadraListActivity : AppCompatActivity() {
                             val date = SimpleDateFormat("dd/MM/yyyy").parse(fecha)
 
                             for(i in 1..numero!!){
-                                var proceso = Proceso(
+                                val proceso = Proceso(
                                     0, date, null, null, null, 0,
                                     0, 0.00, 0.00, false,
                                     "Comprado", "", "", uid
@@ -90,7 +89,7 @@ class EscuadraListActivity : AppCompatActivity() {
             resultLauncher.launch(intent)
         }
 
-        currentFaccionId?.let {
+        currentFaccionId.let {
             escuadraViewModel.allEscuadrasByFaccion(it).observe(this){ escuadra ->
                 escuadra?.let { escuadras -> adapter.submitList(escuadras) }
             }

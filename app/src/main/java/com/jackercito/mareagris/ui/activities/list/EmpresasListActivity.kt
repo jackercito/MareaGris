@@ -67,20 +67,4 @@ class EmpresasListActivity : AppCompatActivity() {
         intent.putExtra(EMPRESA_ID, empresa.uid)
         startActivity(intent)
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == nuevaEmpresaActivityRequestCode && resultCode == Activity.RESULT_OK){
-            data?.getSerializableExtra(EmpresaNewActivity.EXTRA_REPLY)?.let {
-                empresaViewModel.insert(it as Empresa)
-            }
-        } else {
-            Toast.makeText(
-                    applicationContext,
-                    R.string.empty_image_not_select,
-                    Toast.LENGTH_LONG
-            ).show()
-        }
-    }
 }
