@@ -15,16 +15,16 @@ class EscuadraListAdapter(private val onClick: (Escuadra) -> Unit) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): EscuadraListAdapter.EscuadraViewHolder {
+    ): EscuadraViewHolder {
         return EscuadraViewHolder.create(parent, onClick)
     }
 
-    override fun onBindViewHolder(holder: EscuadraListAdapter.EscuadraViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: EscuadraViewHolder, position: Int) {
         val current = getItem(position)
         holder.bind(current)
     }
 
-    class EscuadraViewHolder(itemView: View, val onClick: (Escuadra) -> Unit) :
+    class EscuadraViewHolder(itemView: View, private val onClick: (Escuadra) -> Unit) :
         RecyclerView.ViewHolder(itemView) {
         private val escuadraItemView: TextView = itemView.findViewById(R.id.textView)
         private var currentEscuadra: Escuadra? = null
