@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,10 +22,25 @@ import kotlin.properties.Delegates
 const val EJERCITO_ID = "ejercito id"
 
 class EjercitoListActivity : AppCompatActivity() {
-    private val nuevoEjercitoActivityRequestCode = 1
     private var currentJuegoId by Delegates.notNull<Long>()
     private val ejercitoViewModel: EjercitoViewModel by viewModels {
         EjercitoViewModelFactory((application as MareaGrisApplication).repositoryEjercito)
+    }
+
+    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if(result.resultCode == Activity.RESULT_OK){
+            val data: Intent? = result.data
+            data?.getSerializableExtra(EjercitoNewActivity.EXTRA_REPLY)?.let {
+                (it as Ejercito).idFkJuego = currentJuegoId
+                ejercitoViewModel.insertEjercito(it)
+            }
+        } else {
+            Toast.makeText(
+                applicationContext,
+                R.string.empty_image_not_select,
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +60,8 @@ class EjercitoListActivity : AppCompatActivity() {
         val btnFab: FloatingActionButton = findViewById(R.id.fab)
         btnFab.setOnClickListener{
             val intent = Intent(this@EjercitoListActivity, EjercitoNewActivity::class.java )
-            startActivityForResult(intent, nuevoEjercitoActivityRequestCode)
+            //startActivityForResult(intent, nuevoEjercitoActivityRequestCode)
+            resultLauncher.launch(intent)
         }
 
         currentJuegoId.let {
@@ -60,22 +77,5 @@ class EjercitoListActivity : AppCompatActivity() {
         val intent = Intent(this, FaccionListActivity()::class.java)
         intent.putExtra(EJERCITO_ID, ejercito.uid)
         startActivity(intent)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == nuevoEjercitoActivityRequestCode && resultCode == Activity.RESULT_OK){
-            data?.getSerializableExtra(EjercitoNewActivity.EXTRA_REPLY)?.let {
-                (it as Ejercito).idFkJuego = currentJuegoId
-                ejercitoViewModel.insertEjercito(it)
-            }
-        }else {
-            Toast.makeText(
-                applicationContext,
-                R.string.empty_image_not_select,
-                Toast.LENGTH_LONG
-            ).show()
-        }
     }
 }

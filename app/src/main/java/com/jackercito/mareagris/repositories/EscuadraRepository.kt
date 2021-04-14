@@ -10,8 +10,8 @@ class EscuadraRepository(private val escuadraDao: EscuadraDao) {
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun insertEscuadra(escuadra: Escuadra){
-        escuadraDao.insertAllEscuadras(escuadra)
+    suspend fun insertEscuadra(escuadra: Escuadra) : Long {
+        return escuadraDao.insertAllEscuadras(escuadra)
     }
 
     fun allEscuadrasByFaccion(idFkEscuadra: Long): Flow<List<Escuadra>>{

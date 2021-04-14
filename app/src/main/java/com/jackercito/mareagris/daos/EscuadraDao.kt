@@ -19,7 +19,7 @@ interface EscuadraDao {
     suspend fun deleteAllEscuadras()
 
     @Insert
-    suspend fun insertAllEscuadras(vararg escuadra: Escuadra)
+    suspend fun insertAllEscuadras(escuadra: Escuadra): Long
 
     @Delete
     suspend fun deleteEscuadra(escuadra: Escuadra)

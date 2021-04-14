@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +28,22 @@ class JuegosListActivity : AppCompatActivity() {
         JuegoViewModelFactory((application as MareaGrisApplication).repositoryJuego)
     }
 
+    private var resultLaunch = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if(result.resultCode == Activity.RESULT_OK){
+            val data : Intent? = result.data
+            data?.getSerializableExtra(JuegoNewActivity.EXTRA_REPLY)?.let {
+                (it as Juego).idFkEmpresa = currentEmpresaId
+                juegoViewModel.insert(it)
+            }
+        } else {
+            Toast.makeText(
+                applicationContext,
+                R.string.empty_image_not_select,
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_juego_list)
@@ -44,7 +61,7 @@ class JuegosListActivity : AppCompatActivity() {
         val btnFAB : FloatingActionButton = findViewById(R.id.fab)
         btnFAB.setOnClickListener{
             val intent = Intent(this@JuegosListActivity, JuegoNewActivity::class.java)
-            startActivityForResult(intent, nuevoJuegoActivityRequestCode)
+            resultLaunch.launch(intent)
         }
 
         currentEmpresaId.let {
@@ -60,22 +77,5 @@ class JuegosListActivity : AppCompatActivity() {
         val intent = Intent(this, EjercitoListActivity()::class.java)
         intent.putExtra(JUEGO_ID, juego.uid)
         startActivity(intent)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == nuevoJuegoActivityRequestCode && resultCode == Activity.RESULT_OK){
-            data?.getSerializableExtra(JuegoNewActivity.EXTRA_REPLY)?.let {
-                (it as Juego).idFkEmpresa = currentEmpresaId
-                juegoViewModel.insert(it)
-            }
-        } else {
-            Toast.makeText(
-                applicationContext,
-                R.string.empty_image_not_select,
-                Toast.LENGTH_LONG
-            ).show()
-        }
     }
 }

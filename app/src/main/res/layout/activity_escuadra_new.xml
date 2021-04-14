@@ -1,9 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activities.news.EscuadraNewActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tfNombreUnidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp"
+        android:hint="@string/nombre_escuadra">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ti_nombre_unidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tfNombreSecEscuadra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tfNombreUnidad"
+        android:layout_margin="10dp"
+        android:hint="@string/nombre_sec_escuadra">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ti_nombre_sec_escuadra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tfTipoUnidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tfNombreSecEscuadra"
+        android:layout_margin="10dp"
+        android:hint="@string/tipo_unidad">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ti_tipo_escuadra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tfCantidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tfTipoUnidad"
+        android:layout_margin="10dp"
+        android:hint="@string/cantidad_unidades">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ti_cantidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tfDificultad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tfCantidad"
+        android:layout_margin="10dp"
+        android:hint="@string/dificultad">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ti_dificultad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tfFechaCompra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tfDificultad"
+        android:layout_margin="10dp"
+        android:hint="@string/fecha_compra">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ti_fecha_compra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_crear_escuadra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_padding"
+        android:text="@string/btn_crear_empresa"
+        android:textColor="@color/buttonLabel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

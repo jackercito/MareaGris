@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +28,22 @@ class FaccionListActivity : AppCompatActivity() {
         FaccionViewModelFactory((application as MareaGrisApplication).repositoryFaccion)
     }
 
+    private var resultLaunch = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if(result.resultCode == Activity.RESULT_OK){
+            val data : Intent? = result.data
+            data?.getSerializableExtra(FaccionNewActivity.EXTRA_REPLY)?.let {
+                (it as Faccion).idFkEjercito = currentEjercito
+                faccionViewModel.insertFaccion(it)
+            }
+        } else {
+            Toast.makeText(
+                applicationContext,
+                R.string.empty_image_not_select,
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_faccion_list)
@@ -44,7 +61,7 @@ class FaccionListActivity : AppCompatActivity() {
         val btnFab = findViewById<FloatingActionButton>(R.id.fab)
         btnFab.setOnClickListener {
             val intent = Intent(this@FaccionListActivity, FaccionNewActivity::class.java)
-            startActivityForResult(intent, nuevaFaccionActivityResquestCode)
+            resultLaunch.launch(intent)
         }
 
         currentEjercito.let {
@@ -60,22 +77,5 @@ class FaccionListActivity : AppCompatActivity() {
         val intent = Intent(this, EscuadraListActivity::class.java);
         intent.putExtra(FACCION_ID, faccion.uid)
         startActivity(intent)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == nuevaFaccionActivityResquestCode && resultCode == Activity.RESULT_OK) {
-            data?.getSerializableExtra(FaccionNewActivity.EXTRA_REPLY)?.let {
-                (it as Faccion).idFkEjercito = currentEjercito
-                faccionViewModel.insertFaccion(it)
-            }
-        } else {
-            Toast.makeText(
-                applicationContext,
-                R.string.empty_image_not_select,
-                Toast.LENGTH_LONG
-            ).show()
-        }
     }
 }

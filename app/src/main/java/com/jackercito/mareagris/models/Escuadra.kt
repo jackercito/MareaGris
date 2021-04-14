@@ -17,9 +17,9 @@ data class Escuadra(
     //Hay que macerar esta idea para ver como puede ser la mejor forma de implementarlo
     //Para esto tambien habría que permitir devidir las escuadras en unidades más pequeñas
     //P.E.: 15 SM Interceptor poder dividirlo en 3 escuadras de 5
-    @ColumnInfo(name = "entidadUnica") val entidadUnica: Boolean,
+    @ColumnInfo(name = "entidadUnica") val entidadUnica: Boolean = false,
     @Embedded val unidad: Unidad,
-    val idFkFaccion: Long
+    var idFkFaccion: Long
 ): Serializable {
     /*private var listaProceso: MutableList<Proceso> = this.rellenarProcesos(cantidad, fechaCompra);
 

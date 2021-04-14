@@ -7,10 +7,10 @@
     tools:context=".ui.activities.list.EscuadraListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+        android:id="@+id/recyclerviewEscuadras"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/recyclerview_empresa_item"
+        tools:listitem="@layout/recycleview_escuadra_item"
         android:padding="@dimen/big_padding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

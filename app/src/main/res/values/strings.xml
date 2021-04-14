@@ -34,6 +34,9 @@
     <!-- Activity Escuadra New -->
     <string name="add_escuadra">Añadir escuadra</string>
     <string name="hint_escuadra">Escuadra…</string>
+    <string name="nombre_escuadra">Unidad</string>
+    <string name="nombre_sec_escuadra">Nombre Escuadra</string>
+    <string name="tipo_unidad">Tipo</string>
 
     <!-- String Genericos -->
     <string name="empty_image_not_select">No se seleccionó ninguna imagen</string>
@@ -42,4 +45,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cantidad_unidades">Cantidad</string>
+    <string name="dificultad">Dificultad Estimada</string>
+    <string name="fecha_compra">Fecha de Compra</string>
 </resources>
