@@ -74,7 +74,7 @@ class EscuadraListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_escuadra_list)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerviewEscuadras)
-        val adapter = EscuadraListAdapter { escuadra -> adapterOnClick(escuadra) }
+        val adapter = EscuadraListAdapter(this) { escuadra -> adapterOnClick(escuadra) }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 

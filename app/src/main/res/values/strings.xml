@@ -35,17 +35,36 @@
     <string name="add_escuadra">Añadir escuadra</string>
     <string name="hint_escuadra">Escuadra…</string>
     <string name="nombre_escuadra">Unidad</string>
-    <string name="nombre_sec_escuadra">Nombre Escuadra</string>
     <string name="tipo_unidad">Tipo</string>
+    <string name="nombre_sec_escuadra">Nombre Escuadra</string>
+
 
     <!-- String Genericos -->
     <string name="empty_image_not_select">No se seleccionó ninguna imagen</string>
     <string name="btn_guardar">Guardar</string>
     <string name="select_image">Seleccionar Imagen</string>
+    <string name="miniaturas">Miniaturas: %s</string>
+    <string name="completadas">Completadas: %s</string>
+    <string name="mareagris">Marea Gris: %s</string>
+
+    <!-- String Lista Escuadras -->
+    <string name="cantidad_unidades">Cantidad: %s</string>
+    <string name="tipo_unidad_val">Tipo: %s</string>
+    <string name="nombre_sec_escuadra_val">Escuadra: %s</string>
+    <string name="nombre_unidad">Unidad: %s</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="cantidad_unidades">Cantidad</string>
+
     <string name="dificultad">Dificultad Estimada</string>
     <string name="fecha_compra">Fecha de Compra</string>
+    <string name="imagen_de_cabecera">Imagen de cabecera</string>
+    <string name="avatar">Avatar</string>
+    <string name="tiempoTotal">T. Total: %s</string>
+    <string name="tiempoMedio">T. Medio: %s</string>
+    <string name="tiempoDistribucion">T. Estimado: %s</string>
+    <string name="dificultad_val">Dificultad: %s</string>
+    <string name="dificultad_estimada">Dif. Estimada: %s</string>
+    <string name="variacion">Variacion: %s</string>
 </resources>

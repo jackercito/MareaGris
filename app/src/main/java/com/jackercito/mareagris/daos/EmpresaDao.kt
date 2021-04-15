@@ -1,10 +1,8 @@
 package com.jackercito.mareagris.daos
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.jackercito.mareagris.models.Empresa
+import com.jackercito.mareagris.models.REmpresaJuegos
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -26,4 +24,14 @@ interface EmpresaDao {
 
     @Query("DELETE FROM empresa")
     suspend fun deleteAll()
+
+    @Transaction
+    @Query("SELECT * FROM empresa")
+    fun getEmpresasWhithJuegos(): Flow<List<REmpresaJuegos>>
+
+    /*@Query("SELECT COUNT(uid)  FROM proceso WHERE estado = :estado AND idFkEscuadra IN (SELECT uid FROM Escuadra WHERE idFkFaccion IN (SELECT uid FROM Faccion WHERE idFkEjercito IN (SELECT uid from Ejercito WHERE idFkJuego IN (SELECT uid FROM Juego WHERE idFkEmpresa IN (SELECT uid FROM Empresa WHERE uid = :uid)))))")
+    fun countNumeroDeMinisConEstado(estado : String, uid: Long): Int
+
+    @Query("SELECT COUNT(uid)  FROM proceso WHERE idFkEscuadra IN (SELECT uid FROM Escuadra WHERE idFkFaccion IN (SELECT uid FROM Faccion WHERE idFkEjercito IN (SELECT uid from Ejercito WHERE idFkJuego IN (SELECT uid FROM Juego WHERE idFkEmpresa IN (SELECT uid FROM Empresa WHERE uid = :uid)))))")
+    fun countNumeroDeMinis(uid: Long): Int*/
 }

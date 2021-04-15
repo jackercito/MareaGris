@@ -14,7 +14,6 @@ import com.jackercito.mareagris.models.Empresa
 
 
 class EmpresaListAdapter(private val onClick: (Empresa) -> Unit) : ListAdapter<Empresa, EmpresaListAdapter.EmpresaViewHolder>(EmpresasComparador()) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmpresaViewHolder{
         return EmpresaViewHolder.create(parent, onClick)
     }
@@ -47,7 +46,6 @@ class EmpresaListAdapter(private val onClick: (Empresa) -> Unit) : ListAdapter<E
                 val myUri = Uri.parse("file://$uri")
                 imageItemView.setImageURI(myUri) //Pasar string a uri o uri a string
             }
-
         }
 
         companion object {
