@@ -15,6 +15,10 @@ class FaccionViewModel (private val repository: FaccionRespository): ViewModel()
     fun allFaccionesByEjercito(uid: Long): LiveData<List<Faccion>> {
         return repository.allFaccionesByEjercito(uid).asLiveData()
     }
+
+    fun contarMinisByFaccion(uidFaccion: Long) : Int {
+        return repository.countAllMinisByIdFaccion(uidFaccion)
+    }
 }
 
 class FaccionViewModelFactory(private val repository: FaccionRespository): ViewModelProvider.Factory {

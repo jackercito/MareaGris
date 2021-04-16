@@ -65,9 +65,7 @@ class FaccionListActivity : AppCompatActivity() {
 
         currentEjercito.let {
             faccionViewModel.allFaccionesByEjercito(it).observe(this) { faccion ->
-                faccion?.let { facciones ->
-                    adapter.submitList(facciones)
-                }
+                faccion?.let { facciones -> adapter.submitList(facciones) }
             }
         }
     }

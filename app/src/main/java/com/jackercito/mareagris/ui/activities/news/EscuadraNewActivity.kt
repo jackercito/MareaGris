@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +18,7 @@ class EscuadraNewActivity : AppCompatActivity() {
     private lateinit var etPlannedDate : EditText
     private lateinit var etNombreEscuadra: EditText
     private lateinit var etNombreUnidad: EditText
-    private lateinit var etTipo: EditText
+    private lateinit var etTipo: AutoCompleteTextView
     private lateinit var etCantidad: EditText
     private lateinit var etDificultad: EditText
 
@@ -32,6 +34,14 @@ class EscuadraNewActivity : AppCompatActivity() {
         etTipo = findViewById(R.id.ti_tipo_escuadra)
         etCantidad = findViewById(R.id.ti_cantidad)
         etDificultad = findViewById(R.id.ti_dificultad)
+
+        val items = listOf(
+            getString(R.string.tipo_tropa),
+            getString(R.string.tipo_tanque),
+            getString(R.string.tipo_volador)
+        )
+        val adapter = ArrayAdapter(this, R.layout.list_item, items)
+        etTipo.setAdapter(adapter)
 
         val btnCrearEscuadra = findViewById<Button>(R.id.btn_crear_escuadra)
         btnCrearEscuadra.setOnClickListener{

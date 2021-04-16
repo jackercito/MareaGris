@@ -23,4 +23,7 @@ interface EjercitoDao {
 
     @Delete
     suspend fun deleteEjercito(ejercito: Ejercito)
+
+    @Query("SELECT COUNT(uid)  FROM proceso WHERE idFkEscuadra IN (SELECT uid FROM Escuadra WHERE idFkFaccion IN (SELECT uid FROM Faccion WHERE uid = :uid))")
+    fun countNumeroDeMinis(uid: Long): Int
 }

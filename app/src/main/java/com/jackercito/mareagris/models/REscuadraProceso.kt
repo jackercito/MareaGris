@@ -7,7 +7,7 @@ class REscuadraProceso (
     @Embedded val escuadra: Escuadra,
     @Relation(
         parentColumn = "uid",
-        entityColumn = "uid"
+        entityColumn = "idFkEscuadra"
     )
-    val listaFacciones: List<Proceso>
+    val listaProcesos: List<Proceso>
 )

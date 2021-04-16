@@ -51,7 +51,7 @@ class EscuadraListActivity : AppCompatActivity() {
                                 val proceso = Proceso(
                                     0, date, null, null, null, 0,
                                     0, 0.00, 0.00, false,
-                                    "Comprado", "", "", uid
+                                    "Comprado", "", "", "", uid
                                 )
 
                                 procesoViewModel.insertProceso(proceso)

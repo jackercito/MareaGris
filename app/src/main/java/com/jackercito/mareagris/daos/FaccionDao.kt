@@ -23,4 +23,7 @@ interface FaccionDao {
 
     @Delete
     suspend fun deleteFaccion(faccion: Faccion)
+
+    @Query("SELECT COUNT(uid)  FROM proceso WHERE idFkEscuadra IN (SELECT uid FROM Escuadra WHERE uid = :uid)")
+    fun countNumeroDeMinis(uid: Long): Int
 }

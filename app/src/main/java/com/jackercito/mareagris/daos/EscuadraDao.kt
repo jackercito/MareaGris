@@ -1,10 +1,8 @@
 package com.jackercito.mareagris.daos
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.jackercito.mareagris.models.Escuadra
+import com.jackercito.mareagris.models.REscuadraProceso
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -23,4 +21,11 @@ interface EscuadraDao {
 
     @Delete
     suspend fun deleteEscuadra(escuadra: Escuadra)
+
+    @Transaction
+    @Query("SELECT * FROM escuadra WHERE idFkFaccion = :idFkFaccion")
+    fun getEscuadrasWithProcesosByFaccion(idFkFaccion: Long): Flow<List<REscuadraProceso>>
+
+    @Query("SELECT COUNT(uid)  FROM proceso WHERE idFkEscuadra IN (SELECT uid FROM Escuadra WHERE uid = :uid)")
+    fun countNumeroDeMinisByEscuadra(uid: Long): Int
 }

@@ -17,4 +17,8 @@ class FaccionRespository (private val faccionDao: FaccionDao) {
     fun allFaccionesByEjercito(idFkEjercito: Long): Flow<List<Faccion>> {
         return faccionDao.getFaccionesByEjercito(idFkEjercito)
     }
+
+    fun countAllMinisByIdFaccion(uidFaccion : Long) : Int {
+        return  faccionDao.countNumeroDeMinis(uidFaccion)
+    }
 }

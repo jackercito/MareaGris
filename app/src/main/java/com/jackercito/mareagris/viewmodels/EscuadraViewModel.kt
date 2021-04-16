@@ -2,11 +2,12 @@ package com.jackercito.mareagris.viewmodels
 
 import androidx.lifecycle.*
 import com.jackercito.mareagris.models.Escuadra
+import com.jackercito.mareagris.models.REscuadraProceso
 import com.jackercito.mareagris.repositories.EscuadraRepository
 import kotlinx.coroutines.launch
 
 class EscuadraViewModel (private val repository: EscuadraRepository): ViewModel() {
-    val allEscuadras : LiveData<List<Escuadra>> =repository.allEscudras.asLiveData()
+    val allEscuadras : LiveData<List<Escuadra>> =repository.allEscuadras.asLiveData()
 
     fun insertEscuadra(escuadra: Escuadra): LiveData<Long> {
         val liveData = MutableLiveData<Long>()
@@ -16,8 +17,12 @@ class EscuadraViewModel (private val repository: EscuadraRepository): ViewModel(
         return liveData
     }
 
-    fun allEscuadrasByFaccion(uid: Long): LiveData<List<Escuadra>> {
-        return repository.allEscuadrasByFaccion(uid).asLiveData()
+    fun allEscuadrasByFaccion(uid: Long): LiveData<List<REscuadraProceso>> {
+        return repository.allEscuadrasWithProcesoByFaccion(uid).asLiveData()
+    }
+
+    fun contarMinis(idFk: Long, tabla: String) : Int{
+        return repository.contarMiniaturasPorTablaRelacional(idFk, tabla)
     }
 }
 

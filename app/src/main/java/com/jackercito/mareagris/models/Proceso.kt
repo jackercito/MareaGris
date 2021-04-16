@@ -22,5 +22,7 @@ data class Proceso(
     @ColumnInfo(name = "estado") val estado: String,
     @ColumnInfo(name = "comentarios") val comentarios: String,
     @ColumnInfo(name = "foto") val foto: String,
+    //Pintado Pro, Normal, Tabletop, Chapado en nuln oil, etc...
+    @ColumnInfo(name = "tipoPintado") val tipoPintado: String,
     val idFkEscuadra: Long,
 ): Serializable
