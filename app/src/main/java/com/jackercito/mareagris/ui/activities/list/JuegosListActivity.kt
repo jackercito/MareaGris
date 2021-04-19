@@ -73,7 +73,7 @@ class JuegosListActivity : AppCompatActivity() {
     }
 
     private fun adapterOnClick(juego: Juego){
-        val intent = Intent(this, EjercitoListActivity()::class.java)
+        val intent = Intent(this, EjercitoListActivity::class.java)
         intent.putExtra(JUEGO_ID, juego.uid)
         startActivity(intent)
     }

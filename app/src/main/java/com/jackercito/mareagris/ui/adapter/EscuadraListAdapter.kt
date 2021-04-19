@@ -12,8 +12,7 @@ import com.jackercito.mareagris.R
 import com.jackercito.mareagris.models.Escuadra
 import com.jackercito.mareagris.models.REscuadraProceso
 
-class EscuadraListAdapter(private val context: Context, private val onClick: (Escuadra) -> Unit) :
-    ListAdapter<REscuadraProceso, EscuadraListAdapter.EscuadraViewHolder>(EscuadraComparador()) {
+class EscuadraListAdapter(private val context: Context, private val onClick: (Escuadra) -> Unit) : ListAdapter<REscuadraProceso, EscuadraListAdapter.EscuadraViewHolder>(EscuadraComparador()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -26,9 +25,8 @@ class EscuadraListAdapter(private val context: Context, private val onClick: (Es
         holder.bind(current, context)
     }
 
-    class EscuadraViewHolder(itemView: View, context: Context, private val onClick: (Escuadra) -> Unit) :
+    class EscuadraViewHolder(itemView: View, context: Context, val onClick: (Escuadra) -> Unit) :
         RecyclerView.ViewHolder(itemView) {
-        private val nombreEscuadraItemView: TextView = itemView.findViewById(R.id.txtNombreEscuadra)
         private val cantidadItemView: TextView = itemView.findViewById(R.id.txtCantidad)
         private val unidadItemView: TextView = itemView.findViewById(R.id.txtUnidad)
         private val tipoItemView: TextView = itemView.findViewById(R.id.txtTipoUnidad)
@@ -42,13 +40,12 @@ class EscuadraListAdapter(private val context: Context, private val onClick: (Es
 
         init {
             itemView.setOnClickListener {
-                currentEscuadra?.let { onClick }
+                currentEscuadra?.let { onClick(it) }
             }
         }
 
         fun bind(escuadra: REscuadraProceso, context: Context){
             currentEscuadra = escuadra.escuadra
-            nombreEscuadraItemView.text = context.getString(R.string.nombre_sec_escuadra_val, currentEscuadra!!.nombreEscuadra)
             cantidadItemView.text = context.getString(R.string.cantidad_unidades, currentEscuadra!!.cantidad.toString())
             unidadItemView.text = context.getString(R.string.nombre_unidad, currentEscuadra!!.unidad.nombre)
             tipoItemView.text = context.getString(R.string.tipo_unidad_val, currentEscuadra!!.unidad.tipoUnidad)
@@ -64,8 +61,8 @@ class EscuadraListAdapter(private val context: Context, private val onClick: (Es
                 }
             }
 
-            val mg = 100 - (completadas.toDouble() / currentEscuadra!!.cantidad * 100)
-            val tm = tiempo / completadas
+            val mg = if(currentEscuadra!!.cantidad != 0) 100 - (completadas.toDouble() / currentEscuadra!!.cantidad * 100) else 0
+            val tm = if(completadas != 0) tiempo / completadas else 0
 
             completadasItemView.text = context.getString(R.string.completadas, completadas.toString())
             mareaGrisItemView.text = context.getString(R.string.mareagris, mg.toString())
@@ -87,7 +84,7 @@ class EscuadraListAdapter(private val context: Context, private val onClick: (Es
         }
 
         override fun areContentsTheSame(oldItem: REscuadraProceso, newItem: REscuadraProceso): Boolean {
-            return oldItem.escuadra.nombreEscuadra == newItem.escuadra.nombreEscuadra
+            return oldItem.escuadra.unidad == newItem.escuadra.unidad
         }
     }
 }

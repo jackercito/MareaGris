@@ -17,6 +17,14 @@ class EscuadraViewModel (private val repository: EscuadraRepository): ViewModel(
         return liveData
     }
 
+    fun updateEscuadra(escuadra: Escuadra) = viewModelScope.launch{
+        repository.updateEscudra(escuadra)
+    }
+
+    fun allEscuadrasByUnidad(nombreUnidad: String): LiveData<List<Escuadra>> {
+        return repository.allEscuadrasByUnidad(nombreUnidad).asLiveData()
+    }
+
     fun allEscuadrasByFaccion(uid: Long): LiveData<List<REscuadraProceso>> {
         return repository.allEscuadrasWithProcesoByFaccion(uid).asLiveData()
     }
@@ -24,6 +32,8 @@ class EscuadraViewModel (private val repository: EscuadraRepository): ViewModel(
     fun contarMinis(idFk: Long, tabla: String) : Int{
         return repository.contarMiniaturasPorTablaRelacional(idFk, tabla)
     }
+
+
 }
 
 class EscuadraViewModelFactory(private val repository: EscuadraRepository): ViewModelProvider.Factory {

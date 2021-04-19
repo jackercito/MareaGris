@@ -13,8 +13,14 @@ interface EscuadraDao {
     @Query("SELECT * FROM escuadra WHERE idFkFaccion = :idFkFaccion")
     fun getEscuadrasByFaccion(idFkFaccion: Long): Flow<List<Escuadra>>
 
+    @Query("SELECT * FROM escuadra WHERE nombre = :nombreUnidad")
+    fun getEscuadrasByUnidad(nombreUnidad: String): Flow<List<Escuadra>>
+
     @Query("DELETE FROM escuadra")
     suspend fun deleteAllEscuadras()
+
+    @Update()
+    suspend fun updateEscudra(escuadra: Escuadra)
 
     @Insert
     suspend fun insertAllEscuadras(escuadra: Escuadra): Long

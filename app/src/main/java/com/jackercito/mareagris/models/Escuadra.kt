@@ -9,8 +9,7 @@ import java.io.Serializable
 @Entity
 data class Escuadra(
     @PrimaryKey(autoGenerate = true) val uid: Long,
-    @ColumnInfo(name = "nombreEscuadra") val nombreEscuadra: String,
-    @ColumnInfo(name = "cantidad") val cantidad: Int,
+    @ColumnInfo(name = "cantidad") var cantidad: Int,
     //Esta es una idea para tratar una escudra como una aunica unidad
     //Y poner los valores de la unidad de forma grupal
     //P.E.: 5 SM Interceptor como uno solo tendrá 5 tablas de "proceso" iguales, pero se habrá rellenado una vez

@@ -68,6 +68,22 @@
     <string name="dificultad_val">Dificultad: %s</string>
     <string name="dificultad_estimada">Dif. Estimada: %s</string>
     <string name="variacion">Variacion: %s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="add_escuadra_existente_query">Crear nueva Escuadra:</string>
+    <string name="dialog_escuadra_si">Si</string>
+    <string name="dialog_escuadra_no">No</string>
+
+    <string name="tiempo_invertido">Tiempo Invertido</string>
+    <string name="fecha_fin">Fecha Finalizado</string>
+    <string name="btn_terminar">Terminar</string>
+    <string name="comentario">Comentario</string>
+    <string name="title_activity_proceso_list">ProcesoListActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

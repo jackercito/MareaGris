@@ -11,7 +11,7 @@ import com.jackercito.mareagris.models.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Empresa::class, Juego::class, Ejercito::class, Faccion::class, Escuadra::class, Proceso::class], version = 8, exportSchema = false)
+@Database(entities = [Empresa::class, Juego::class, Ejercito::class, Faccion::class, Escuadra::class, Proceso::class], version = 9, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class MareaGrisDatabase: RoomDatabase() {
     abstract fun empresaDao(): EmpresaDao

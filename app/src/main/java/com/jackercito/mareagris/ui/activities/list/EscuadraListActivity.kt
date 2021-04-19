@@ -3,6 +3,7 @@ package com.jackercito.mareagris.ui.activities.list
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -14,6 +15,7 @@ import com.jackercito.mareagris.MareaGrisApplication
 import com.jackercito.mareagris.R
 import com.jackercito.mareagris.models.Escuadra
 import com.jackercito.mareagris.models.Proceso
+import com.jackercito.mareagris.models.REscuadraProceso
 import com.jackercito.mareagris.ui.activities.news.EscuadraNewActivity
 import com.jackercito.mareagris.ui.adapter.EscuadraListAdapter
 import com.jackercito.mareagris.viewmodels.EscuadraViewModel
@@ -26,6 +28,7 @@ import kotlin.properties.Delegates
 const val ESCUADRA_ID = "escuadra id"
 
 class EscuadraListActivity : AppCompatActivity() {
+    private lateinit var listaEscuadras : List<REscuadraProceso>
     private var currentFaccionId by Delegates.notNull<Long>()
     private val escuadraViewModel: EscuadraViewModel by viewModels{
         EscuadraViewModelFactory((application as MareaGrisApplication).repositoryEscuadra)
@@ -35,29 +38,43 @@ class EscuadraListActivity : AppCompatActivity() {
         ProcesoViewModelFactory((application as MareaGrisApplication).repositoryProceso)
     }
 
+    private fun crearEscuadra(elemento: Escuadra, fecha: String, cantidad: Int, nombreEscuadra: String){
+        escuadraViewModel.insertEscuadra(elemento).observe(this){ uid ->
+            crearProcesos(fecha,uid, cantidad, nombreEscuadra)
+        }
+    }
+
+    private fun editarEscuadra(escuadra: Escuadra, cantidad: Int){
+        escuadra.cantidad = cantidad
+        escuadraViewModel.updateEscuadra(escuadra)
+    }
+
+    private fun crearProcesos(fecha: String, uid: Long, cantidad: Int, nombreEscuadra: String) {
+        val date = SimpleDateFormat("dd/MM/yyyy").parse(fecha)
+
+        for(i in 1..cantidad){
+            val proceso = Proceso(
+                0, date, null, null, null, 0,
+                0, 0.00, 0.00, false,
+                "Comprado", "", "", "", nombreEscuadra, uid
+            )
+            procesoViewModel.insertProceso(proceso)
+        }
+    }
+
     private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if(result.resultCode == Activity.RESULT_OK){
             val data: Intent? = result.data
 
-            data?.getSerializableExtra(EscuadraNewActivity.ESCUADRA_REPLY)?.let {
-                (it as Escuadra).idFkFaccion = currentFaccionId
-                escuadraViewModel.insertEscuadra(it).observe(this){ uid ->
-                    data.getStringExtra(EscuadraNewActivity.FECHA)?.let{ fecha ->
-                        data.getStringExtra(EscuadraNewActivity.CANTIDAD).let{ cantidad ->
-                            val numero = cantidad?.toInt()
-                            val date = SimpleDateFormat("dd/MM/yyyy").parse(fecha)
+            data?.getSerializableExtra(EscuadraNewActivity.ESCUADRA_REPLY)?.let { escuadra ->
+                (escuadra as Escuadra).idFkFaccion = currentFaccionId
 
-                            for(i in 1..numero!!){
-                                val proceso = Proceso(
-                                    0, date, null, null, null, 0,
-                                    0, 0.00, 0.00, false,
-                                    "Comprado", "", "", "", uid
-                                )
-
-                                procesoViewModel.insertProceso(proceso)
-                            }
-                        }
-                    }
+                val find = listaEscuadras.find { it.escuadra.unidad.nombre == escuadra.unidad.nombre}
+                if(find != null){
+                    crearProcesos(data.getStringExtra(EscuadraNewActivity.FECHA)!!, find.escuadra.uid , data.getStringExtra(EscuadraNewActivity.CANTIDAD)!!.toInt(), data.getStringExtra(EscuadraNewActivity.ESCUADRA)!!)
+                    editarEscuadra(find.escuadra, find.escuadra.cantidad + data.getStringExtra(EscuadraNewActivity.CANTIDAD)!!.toInt())
+                } else {
+                    crearEscuadra(escuadra, data.getStringExtra(EscuadraNewActivity.FECHA)!!, data.getStringExtra(EscuadraNewActivity.CANTIDAD)!!.toInt(), data.getStringExtra(EscuadraNewActivity.ESCUADRA)!!)
                 }
             }
         } else {
@@ -91,14 +108,16 @@ class EscuadraListActivity : AppCompatActivity() {
 
         currentFaccionId.let {
             escuadraViewModel.allEscuadrasByFaccion(it).observe(this){ escuadra ->
+                listaEscuadras = escuadra
                 escuadra?.let { escuadras -> adapter.submitList(escuadras) }
             }
         }
     }
 
     private fun adapterOnClick(escuadra: Escuadra) {
-        //val intent = Intent(this, EscuadraListActivity::class.java);
-        //intent.putExtra(FACCION_ID, faccion.uid)
-        //startActivity(intent)
+        Log.d("TAG_DEBUG", "OnClick")
+        val intent = Intent(this, ProcesoListActivity::class.java)
+        intent.putExtra(ESCUADRA_ID, escuadra.uid)
+        startActivity(intent)
     }
 }

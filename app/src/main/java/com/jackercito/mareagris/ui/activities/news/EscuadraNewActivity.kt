@@ -51,11 +51,12 @@ class EscuadraNewActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
                 val unidad = Unidad(etNombreUnidad.text.toString(), etTipo.text.toString(), etDificultad.text.toString().toInt(), 0.00, 0.00, 0.00)
-                val escuadra = Escuadra(0, etNombreEscuadra.text.toString(), etCantidad.text.toString().toInt(), false, unidad, 0)
+                val escuadra = Escuadra(0, etCantidad.text.toString().toInt(), false, unidad, 0)
 
                 replyIntent.putExtra(ESCUADRA_REPLY, escuadra)
                 replyIntent.putExtra(CANTIDAD, etCantidad.text.toString())
                 replyIntent.putExtra(FECHA, etPlannedDate.text.toString())
+                replyIntent.putExtra(ESCUADRA,  etNombreEscuadra.text.toString())
 
                 setResult(Activity.RESULT_OK, replyIntent)
             }
@@ -79,5 +80,6 @@ class EscuadraNewActivity : AppCompatActivity() {
         const val ESCUADRA_REPLY = "com.jackercito.mareagris.empresalistsql.REPLY"
         const val CANTIDAD = "com.jackercito.mareagris.empresalistsql.CANTIDAD"
         const val FECHA = "com.jackercito.mareagris.empresalistsql.FECHA"
+        const val ESCUADRA = "com.jackercito.mareagris.empresalistsql.ESCUADRA"
     }
 }

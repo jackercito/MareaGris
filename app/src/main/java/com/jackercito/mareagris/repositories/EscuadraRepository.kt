@@ -16,9 +16,14 @@ class EscuadraRepository(private val escuadraDao: EscuadraDao) {
         return escuadraDao.insertAllEscuadras(escuadra)
     }
 
-    fun allEscuadrasByFaccion(idFkEscuadra: Long): Flow<List<Escuadra>>{
-        return escuadraDao.getEscuadrasByFaccion(idFkEscuadra)
+    suspend fun updateEscudra(escuadra: Escuadra) {
+        return escuadraDao.updateEscudra(escuadra)
     }
+
+    fun allEscuadrasByUnidad(nombreUnidad: String): Flow<List<Escuadra>>{
+        return escuadraDao.getEscuadrasByUnidad(nombreUnidad)
+    }
+
 
     fun allEscuadrasWithProcesoByFaccion(idFkEscuadra: Long): Flow<List<REscuadraProceso>>{
         return escuadraDao.getEscuadrasWithProcesosByFaccion(idFkEscuadra)
