@@ -29,6 +29,10 @@ class EscuadraRepository(private val escuadraDao: EscuadraDao) {
         return escuadraDao.getEscuadrasWithProcesosByFaccion(idFkEscuadra)
     }
 
+    fun getAllEscuadrasRE(): Flow<List<REscuadraProceso>>{
+        return escuadraDao.getAllEscuadrasRE()
+    }
+
     fun contarMiniaturasPorTablaRelacional(idFk : Long, tabla : String): Int {
         return when (tabla) {
             "Ejercito" -> escuadraDao.countNumeroDeMinisByEscuadra(idFk)

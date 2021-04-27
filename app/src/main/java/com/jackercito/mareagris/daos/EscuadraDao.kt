@@ -29,6 +29,10 @@ interface EscuadraDao {
     suspend fun deleteEscuadra(escuadra: Escuadra)
 
     @Transaction
+    @Query("SELECT * FROM escuadra")
+    fun getAllEscuadrasRE(): Flow<List<REscuadraProceso>>
+
+    @Transaction
     @Query("SELECT * FROM escuadra WHERE idFkFaccion = :idFkFaccion")
     fun getEscuadrasWithProcesosByFaccion(idFkFaccion: Long): Flow<List<REscuadraProceso>>
 

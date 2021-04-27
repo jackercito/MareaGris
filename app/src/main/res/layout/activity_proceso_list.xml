@@ -6,11 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.list.FaccionListActivity">
 
+    <!--<com.google.android.material.switchmaterial.SwitchMaterial
+    android:id="@+id/round_up_switch"
+    android:layout_width="match_parent"
+    android:layout_height="0dp" />-->
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewFacciones"
+        android:id="@+id/recyclerviewProceso"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/recycleview_faccion_item"
+        tools:listitem="@layout/recycleview_proceso_item"
         android:padding="@dimen/big_padding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

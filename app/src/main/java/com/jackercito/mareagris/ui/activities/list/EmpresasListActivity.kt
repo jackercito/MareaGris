@@ -21,7 +21,6 @@ import com.jackercito.mareagris.viewmodels.EmpresaViewModelFactory
 const val EMPRESA_ID = "empresa id"
 
 class EmpresasListActivity : AppCompatActivity() {
-    private val nuevaEmpresaActivityRequestCode = 1
     private val empresaViewModel: EmpresaViewModel by viewModels {
         EmpresaViewModelFactory((application as MareaGrisApplication).repositoryEmpresa)
     }

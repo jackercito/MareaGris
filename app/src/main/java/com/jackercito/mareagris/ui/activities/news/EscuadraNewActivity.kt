@@ -38,7 +38,10 @@ class EscuadraNewActivity : AppCompatActivity() {
         val items = listOf(
             getString(R.string.tipo_tropa),
             getString(R.string.tipo_tanque),
-            getString(R.string.tipo_volador)
+            getString(R.string.tipo_volador),
+            getString(R.string.tipo_amo),
+            getString(R.string.tipo_cg),
+            getString(R.string.tipo_elite)
         )
         val adapter = ArrayAdapter(this, R.layout.list_item, items)
         etTipo.setAdapter(adapter)

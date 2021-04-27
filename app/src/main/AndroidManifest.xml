@@ -10,11 +10,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MareaGris">
+
+        <activity
+            android:name=".ui.activities.detail.ProcesoDetailActivity"
+            android:parentActivityName=".ui.activities.list.ProcesoListActivity" />
         <activity
             android:name=".ui.activities.list.ProcesoListActivity"
             android:label="@string/title_activity_proceso_list"
-            android:theme="@style/Theme.MareaGris.NoActionBar"></activity>
-        <activity android:name=".ui.activities.edit.ProcesoEditActivity" />
+            android:launchMode="singleTop"
+            android:parentActivityName=".ui.activities.list.EscuadraListActivity" />
+        <activity
+            android:name=".ui.activities.edit.ProcesoEditActivity"
+            android:parentActivityName=".ui.activities.list.ProcesoListActivity" />
         <activity
             android:name=".ui.activities.news.EscuadraNewActivity"
             android:parentActivityName=".ui.activities.list.EscuadraListActivity" />
@@ -55,9 +62,6 @@
             android:label="@string/activity_name_list_juegos"
             android:launchMode="singleTop"
             android:parentActivityName=".ui.activities.list.EmpresasListActivity" />
-        <activity
-            android:name=".RellenarFicha"
-            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

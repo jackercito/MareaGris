@@ -54,9 +54,13 @@
     <string name="nombre_unidad">Unidad: %s</string>
 
     <!-- String Menú Selecto Tippo Unidad -->
-    <string name="tipo_tropa">Tropa</string>
+    <string name="tipo_tropa">Tropas</string>
     <string name="tipo_tanque">Tanque</string>
     <string name="tipo_volador">Volador</string>
+    <string name="tipo_cg">C.G.</string>
+    <string name="tipo_elite">Elite</string>
+    <string name="tipo_fortificacion">Fortificación</string>
+    <string name="tipo_amo">Amo de la Guerra</string>
 
     <string name="dificultad">Dificultad Estimada</string>
     <string name="fecha_compra">Fecha de Compra</string>
@@ -86,4 +90,11 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="fecha_compra_val">Fecha de Compra: %s</string>
+    <string name="tiempo_estimado">Tiempo estimado: %s</string>
+    <string name="finalizar">Finalizar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancel">Cancelar</string>
 </resources>

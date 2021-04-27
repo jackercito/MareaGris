@@ -12,7 +12,8 @@ import com.jackercito.mareagris.R
 import com.jackercito.mareagris.models.Escuadra
 import com.jackercito.mareagris.models.REscuadraProceso
 
-class EscuadraListAdapter(private val context: Context, private val onClick: (Escuadra) -> Unit) : ListAdapter<REscuadraProceso, EscuadraListAdapter.EscuadraViewHolder>(EscuadraComparador()) {
+class EscuadraListAdapter(private val context: Context, private val onClick: (Escuadra) -> Unit) :
+    ListAdapter<REscuadraProceso, EscuadraListAdapter.EscuadraViewHolder>(EscuadraComparador()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -25,7 +26,7 @@ class EscuadraListAdapter(private val context: Context, private val onClick: (Es
         holder.bind(current, context)
     }
 
-    class EscuadraViewHolder(itemView: View, context: Context, val onClick: (Escuadra) -> Unit) :
+    class EscuadraViewHolder(itemView: View, val onClick: (Escuadra) -> Unit) :
         RecyclerView.ViewHolder(itemView) {
         private val cantidadItemView: TextView = itemView.findViewById(R.id.txtCantidad)
         private val unidadItemView: TextView = itemView.findViewById(R.id.txtUnidad)
@@ -73,7 +74,7 @@ class EscuadraListAdapter(private val context: Context, private val onClick: (Es
         companion object {
             fun create(parent: ViewGroup, context: Context, onClick: (Escuadra) -> Unit): EscuadraViewHolder{
                 val view: View = LayoutInflater.from(parent.context).inflate(R.layout.recycleview_escuadra_item, parent, false)
-                return EscuadraViewHolder(view, context, onClick)
+                return EscuadraViewHolder(view, onClick)
             }
         }
     }

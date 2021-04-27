@@ -25,6 +25,10 @@ class EscuadraViewModel (private val repository: EscuadraRepository): ViewModel(
         return repository.allEscuadrasByUnidad(nombreUnidad).asLiveData()
     }
 
+    fun allEscuadrasRE(): LiveData<List<REscuadraProceso>> {
+        return repository.getAllEscuadrasRE().asLiveData()
+    }
+
     fun allEscuadrasByFaccion(uid: Long): LiveData<List<REscuadraProceso>> {
         return repository.allEscuadrasWithProcesoByFaccion(uid).asLiveData()
     }

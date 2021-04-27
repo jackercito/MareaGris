@@ -41,6 +41,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
     implementation "androidx.cardview:cardview:$cardView_version"
+    implementation 'org.apache.commons:commons-math3:3.6.1'
 
     // Dependencies for working with Architecture components
     // You'll probably have to update the version numbers in build.gradle (Project)
