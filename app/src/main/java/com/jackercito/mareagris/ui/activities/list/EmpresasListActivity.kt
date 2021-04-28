@@ -13,6 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jackercito.mareagris.MareaGrisApplication
 import com.jackercito.mareagris.R
 import com.jackercito.mareagris.models.Empresa
+import com.jackercito.mareagris.models.REmpresaConteo
 import com.jackercito.mareagris.ui.activities.news.EmpresaNewActivity
 import com.jackercito.mareagris.ui.adapter.EmpresaListAdapter
 import com.jackercito.mareagris.viewmodels.EmpresaViewModel
@@ -45,11 +46,11 @@ class EmpresasListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_empresas_list)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = EmpresaListAdapter { empresa -> adapterOnClick(empresa) }
+        val adapter = EmpresaListAdapter(this) { empresa -> adapterOnClick(empresa) }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        empresaViewModel.allEmpresas.observe(this) { empresa ->
+        empresaViewModel.allEmpresasConConteo.observe(this) { empresa ->
             // Update the cached copy of the words in the adapter.
             empresa?.let { adapter.submitList(it) }
         }
@@ -61,9 +62,9 @@ class EmpresasListActivity : AppCompatActivity() {
         }
     }
 
-    private fun adapterOnClick(empresa: Empresa) {
+    private fun adapterOnClick(empresa: REmpresaConteo) {
         val intent = Intent(this, JuegosListActivity()::class.java)
-        intent.putExtra(EMPRESA_ID, empresa.uid)
+        intent.putExtra(EMPRESA_ID, empresa.empresa?.uid)
         startActivity(intent)
     }
 }

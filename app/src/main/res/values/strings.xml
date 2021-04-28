@@ -43,9 +43,9 @@
     <string name="empty_image_not_select">No se seleccionó ninguna imagen</string>
     <string name="btn_guardar">Guardar</string>
     <string name="select_image">Seleccionar Imagen</string>
-    <string name="miniaturas">Miniaturas: %s</string>
-    <string name="completadas">Completadas: %s</string>
-    <string name="mareagris">Marea Gris: %s %%</string>
+    <string name="miniaturas">Miniaturas: %d</string>
+    <string name="completadas">Completadas: %d</string>
+    <string name="mareagris">Marea Gris: %d %%</string>
 
     <!-- String Lista Escuadras -->
     <string name="cantidad_unidades">Cantidad: %s</string>
@@ -97,4 +97,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="aceptar">Aceptar</string>
     <string name="cancel">Cancelar</string>
+    <string name="esadoVal">Estado: %s</string>
+    <string name="fecha_fin_val">Fecha Terminado: %s</string>
+    <string name="tiempoVal">Tiempo: %d</string>
 </resources>

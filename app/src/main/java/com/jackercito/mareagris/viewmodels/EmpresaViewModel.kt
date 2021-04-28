@@ -2,6 +2,7 @@ package com.jackercito.mareagris.viewmodels
 
 import androidx.lifecycle.*
 import com.jackercito.mareagris.models.Empresa
+import com.jackercito.mareagris.models.REmpresaConteo
 import com.jackercito.mareagris.repositories.EmpresaRepository
 import kotlinx.coroutines.launch
 
@@ -11,6 +12,7 @@ class EmpresaViewModel (private val repository: EmpresaRepository) : ViewModel()
     //   the UI when the data actually changes.
     // - Repository is completely separated from the UI through the ViewModel.
     val allEmpresas: LiveData<List<Empresa>> = repository.allEmpresas.asLiveData()
+    val allEmpresasConConteo: LiveData<List<REmpresaConteo>> = repository.allEmpresasConConteo.asLiveData()
 
     /**
      * Launching a new coroutine to insert the data in a non-blocking way

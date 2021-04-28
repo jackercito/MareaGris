@@ -18,7 +18,7 @@ class EscuadraListAdapter(private val context: Context, private val onClick: (Es
         parent: ViewGroup,
         viewType: Int
     ): EscuadraViewHolder {
-        return EscuadraViewHolder.create(parent, context, onClick)
+        return EscuadraViewHolder.create(parent, onClick)
     }
 
     override fun onBindViewHolder(holder: EscuadraViewHolder, position: Int) {
@@ -62,17 +62,17 @@ class EscuadraListAdapter(private val context: Context, private val onClick: (Es
                 }
             }
 
-            val mg = if(currentEscuadra!!.cantidad != 0) 100 - (completadas.toDouble() / currentEscuadra!!.cantidad * 100) else 0
+            val mg = if(currentEscuadra!!.cantidad != 0) 100 - (completadas / currentEscuadra!!.cantidad * 100) else 0
             val tm = if(completadas != 0) tiempo / completadas else 0
 
-            completadasItemView.text = context.getString(R.string.completadas, completadas.toString())
-            mareaGrisItemView.text = context.getString(R.string.mareagris, mg.toString())
+            completadasItemView.text = context.getString(R.string.completadas, completadas)
+            mareaGrisItemView.text = context.getString(R.string.mareagris, mg)
             tTotalItemView.text = context.getString(R.string.tiempoTotal, tiempo.toString())
             tMedioItemView.text = context.getString(R.string.tiempoMedio, tm.toString())
         }
 
         companion object {
-            fun create(parent: ViewGroup, context: Context, onClick: (Escuadra) -> Unit): EscuadraViewHolder{
+            fun create(parent: ViewGroup, onClick: (Escuadra) -> Unit): EscuadraViewHolder{
                 val view: View = LayoutInflater.from(parent.context).inflate(R.layout.recycleview_escuadra_item, parent, false)
                 return EscuadraViewHolder(view, onClick)
             }

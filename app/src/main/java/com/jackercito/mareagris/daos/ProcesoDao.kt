@@ -1,9 +1,6 @@
 package com.jackercito.mareagris.daos
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.jackercito.mareagris.models.Proceso
 import kotlinx.coroutines.flow.Flow
 
@@ -15,8 +12,14 @@ interface ProcesoDao {
     @Query("SELECT * FROM proceso WHERE idFkEscuadra = :idFkEscuadra")
     fun getAllProcesosByEscuadra(idFkEscuadra: Long): Flow<List<Proceso>>
 
+    @Query("SELECT * FROM proceso WHERE uid = :uid")
+    fun getProcesoById(uid: Long): Flow<Proceso>
+
     @Query("DELETE FROM proceso")
     suspend fun deleteAllProcesos()
+
+    @Update
+    suspend fun updateProceso(proceso: Proceso)
 
     @Insert
     suspend fun insertAllProcesos(vararg proceso: Proceso)

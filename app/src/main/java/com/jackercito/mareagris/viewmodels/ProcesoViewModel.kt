@@ -12,8 +12,16 @@ class ProcesoViewModel(private val repository: ProcesoRepository): ViewModel(){
         repository.insertProceso(proceso)
     }
 
+    fun getProcesoById(uid: Long): LiveData<Proceso> {
+        return repository.getProcesoById(uid).asLiveData()
+    }
+
     fun allProcesosByEscuadra(uid: Long): LiveData<List<Proceso>> {
         return repository.allProcesosByEscuadra(uid).asLiveData()
+    }
+
+    fun updateProceso(proceso: Proceso) = viewModelScope.launch{
+        repository.updateProceso(proceso)
     }
 }
 

@@ -3,6 +3,7 @@ package com.jackercito.mareagris.ui.activities.list
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -17,10 +18,12 @@ import com.jackercito.mareagris.ui.activities.detail.ProcesoDetailActivity
 import com.jackercito.mareagris.ui.adapter.ProcesoListAdapter
 import com.jackercito.mareagris.viewmodels.ProcesoViewModel
 import com.jackercito.mareagris.viewmodels.ProcesoViewModelFactory
+import kotlin.properties.Delegates
 
 const val PROCESO_ID = "proceso id"
 
 class ProcesoListActivity : AppCompatActivity() {
+    private var currentEscuadraId by Delegates.notNull<Long>()
     private val procesoViewModel: ProcesoViewModel by viewModels {
         ProcesoViewModelFactory((application as MareaGrisApplication).repositoryProceso)
     }
@@ -48,9 +51,18 @@ class ProcesoListActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        procesoViewModel.allProcesos.observe(this) { procesos ->
-            procesos?.let {
-                adapter.submitList(it)
+        val bundle: Bundle? = intent.extras
+        if (bundle != null) {
+            currentEscuadraId = bundle.getLong(ESCUADRA_ID)
+        }
+
+        Log.d("currentEscuadraId", currentEscuadraId.toString())
+
+        currentEscuadraId.let {
+            procesoViewModel.allProcesosByEscuadra(it).observe(this) { procesos ->
+                procesos?.let { listaProcesos ->
+                    adapter.submitList(listaProcesos)
+                }
             }
         }
 

@@ -14,7 +14,15 @@ class ProcesoRepository(private val procesoDao: ProcesoDao) {
         procesoDao.insertAllProcesos(proceso)
     }
 
+    fun getProcesoById(uid: Long): Flow<Proceso> {
+        return procesoDao.getProcesoById(uid)
+    }
+
     fun allProcesosByEscuadra(idFkEscuadra: Long): Flow<List<Proceso>>{
         return procesoDao.getAllProcesosByEscuadra(idFkEscuadra)
+    }
+
+    suspend fun updateProceso(proceso: Proceso) {
+        procesoDao.updateProceso(proceso)
     }
 }

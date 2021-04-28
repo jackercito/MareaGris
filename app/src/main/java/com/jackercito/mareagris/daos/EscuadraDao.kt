@@ -30,7 +30,7 @@ interface EscuadraDao {
 
     @Transaction
     @Query("SELECT * FROM escuadra")
-    fun getAllEscuadrasRE(): Flow<List<REscuadraProceso>>
+    suspend fun getAllEscuadrasRE(): List<REscuadraProceso>
 
     @Transaction
     @Query("SELECT * FROM escuadra WHERE idFkFaccion = :idFkFaccion")

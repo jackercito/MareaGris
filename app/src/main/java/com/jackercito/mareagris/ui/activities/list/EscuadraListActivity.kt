@@ -3,7 +3,6 @@ package com.jackercito.mareagris.ui.activities.list
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -115,7 +114,6 @@ class EscuadraListActivity : AppCompatActivity() {
     }
 
     private fun adapterOnClick(escuadra: Escuadra) {
-        Log.d("TAG_DEBUG", "OnClick")
         val intent = Intent(this, ProcesoListActivity::class.java)
         intent.putExtra(ESCUADRA_ID, escuadra.uid)
         startActivity(intent)

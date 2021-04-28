@@ -13,7 +13,7 @@ import com.jackercito.mareagris.models.Proceso
 
 class ProcesoListAdapter (private val context: Context, private val onClick: (Proceso) -> Unit): ListAdapter<Proceso, ProcesoListAdapter.ProcesoViewHolder>(ProcesoComparador()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProcesoViewHolder {
-        return ProcesoViewHolder.create(parent, context, onClick)
+        return ProcesoViewHolder.create(parent, onClick)
     }
 
     override fun onBindViewHolder(holder: ProcesoViewHolder, position: Int) {
@@ -36,13 +36,13 @@ class ProcesoListAdapter (private val context: Context, private val onClick: (Pr
 
         fun bind(proceso: Proceso, context: Context) {
             currentProceso = proceso
-            nombreEscuadraViewItem.text = context.getString(R.string.cantidad_unidades,
+            nombreEscuadraViewItem.text = context.getString(R.string.nombre_sec_escuadra_val,
                 currentProceso!!.nombreEscuadra
             )
         }
 
         companion object {
-            fun create(parent: ViewGroup, context: Context, onClick: (Proceso) -> Unit): ProcesoViewHolder {
+            fun create(parent: ViewGroup, onClick: (Proceso) -> Unit): ProcesoViewHolder {
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.recycleview_proceso_item, parent, false)
                 return ProcesoViewHolder(view, onClick)

@@ -18,7 +18,7 @@ class DialogoTerminadaConfirmacionFragmen : DialogFragment() {
     private lateinit var listener: DialogoTerminadaConfirmacionListener
 
     interface DialogoTerminadaConfirmacionListener {
-        fun onDialogPositiveClick(fecha: Int, tiempo: Int)
+        fun onDialogPositiveClick(fecha: String, tiempo: Int)
         fun onDialogNegativeClick(dialog: DialogFragment)
     }
 
@@ -44,6 +44,7 @@ class DialogoTerminadaConfirmacionFragmen : DialogFragment() {
 
             etPlannedDate = view.findViewById(R.id.ti_FechaFinalizado)
             etTiempoTransc = view.findViewById(R.id.ti_TiempoInvertido)
+            etPlannedDate.setOnClickListener{ showDatePickerDialog() }
 
             // Inflate and set the layout for the dialog
             // Pass null as the parent view because its going in the dialog layout
@@ -51,7 +52,7 @@ class DialogoTerminadaConfirmacionFragmen : DialogFragment() {
                 // Add action buttons
                 .setPositiveButton(R.string.aceptar,
                     DialogInterface.OnClickListener { _, _ ->
-                        listener.onDialogPositiveClick(etPlannedDate.text.toString().toInt(), etTiempoTransc.text.toString().toInt())
+                        listener.onDialogPositiveClick(etPlannedDate.text.toString(), etTiempoTransc.text.toString().toInt())
                     })
                 .setNegativeButton(R.string.cancel,
                     DialogInterface.OnClickListener { _, _ ->
@@ -61,15 +62,15 @@ class DialogoTerminadaConfirmacionFragmen : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
-    /*private fun showDatePickerDialog() {
+    private fun showDatePickerDialog() {
         val newFragment = DatePickerFragment.newInstance { _, year, month, day ->
             // +1 because January is zero
             val cero = if (month + 1 <= 9) "0" else ""
             val selectedDate = "$day/$cero${month + 1}/$year"
-            etPlannedDate = findViewById(R.id.ti_FechaFinalizado)
+            //etPlannedDate = requireView().findViewById(R.id.ti_FechaFinalizado)
             etPlannedDate.setText(selectedDate)
         }
 
-        newFragment.show(supportFragmentManager, "datePicker")
-    }*/
+        newFragment.show(childFragmentManager, "datePicker")
+    }
 }

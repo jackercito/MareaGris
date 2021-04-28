@@ -29,7 +29,7 @@ class EscuadraRepository(private val escuadraDao: EscuadraDao) {
         return escuadraDao.getEscuadrasWithProcesosByFaccion(idFkEscuadra)
     }
 
-    fun getAllEscuadrasRE(): Flow<List<REscuadraProceso>>{
+    suspend fun getAllEscuadrasRE(): List<REscuadraProceso>{
         return escuadraDao.getAllEscuadrasRE()
     }
 

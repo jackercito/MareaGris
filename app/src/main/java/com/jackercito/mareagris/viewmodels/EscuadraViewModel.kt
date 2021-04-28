@@ -7,7 +7,8 @@ import com.jackercito.mareagris.repositories.EscuadraRepository
 import kotlinx.coroutines.launch
 
 class EscuadraViewModel (private val repository: EscuadraRepository): ViewModel() {
-    val allEscuadras : LiveData<List<Escuadra>> =repository.allEscuadras.asLiveData()
+    val allEscuadras : LiveData<List<Escuadra>> = repository.allEscuadras.asLiveData()
+    val allEscuadrasRE: MutableLiveData<List<REscuadraProceso>> = MutableLiveData()
 
     fun insertEscuadra(escuadra: Escuadra): LiveData<Long> {
         val liveData = MutableLiveData<Long>()
@@ -25,8 +26,13 @@ class EscuadraViewModel (private val repository: EscuadraRepository): ViewModel(
         return repository.allEscuadrasByUnidad(nombreUnidad).asLiveData()
     }
 
-    fun allEscuadrasRE(): LiveData<List<REscuadraProceso>> {
-        return repository.getAllEscuadrasRE().asLiveData()
+    /*suspend fun allEscuadrasRE(): MutableLiveData<REscuadraProceso> {
+        return repository.getAllEscuadrasRE().asMutableL
+    }*/
+
+    fun allEscuadrasRE() = viewModelScope.launch {
+        val escuadras = repository.getAllEscuadrasRE()
+        allEscuadrasRE.postValue(escuadras)
     }
 
     fun allEscuadrasByFaccion(uid: Long): LiveData<List<REscuadraProceso>> {
