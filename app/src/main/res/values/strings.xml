@@ -5,7 +5,7 @@
     <string name="textFecha">Fecha Compra</string>
     <string name="add_empresa">Agregar Empresa</string>
 
-    <string name="hint_empresa">Empresa…</string>
+    <string name="hint_empresa">Empresa</string>
     <string name="btn_crear_empresa">Guardar</string>
     <string name="empty_not_saved">La empresa no se ha guardado porque los valores están en blanco</string>
     <string name="add_word">Añadir empresa</string>
@@ -100,4 +100,12 @@
     <string name="esadoVal">Estado: %s</string>
     <string name="fecha_fin_val">Fecha Terminado: %s</string>
     <string name="tiempoVal">Tiempo: %d</string>
+    <string name="action_settings">Menú</string>
+    <string name="file">Configuracion</string>
+    <string name="create_new">Crear nuevo</string>
+    <string name="editar">Editar</string>
+    <string name="add_favorito">Añadir a favoritos</string>
+    <string name="action_home">Home</string>
+    <string name="help">Ayuda</string>
+    <string name="agrupar_escuadras">Agrupar Escuadras?</string>
 </resources>

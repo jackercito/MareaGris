@@ -3,13 +3,14 @@ package com.jackercito.mareagris.ui.activities.list
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.jackercito.mareagris.MainMenuActivity
 import com.jackercito.mareagris.MareaGrisApplication
 import com.jackercito.mareagris.R
 import com.jackercito.mareagris.models.Empresa
@@ -21,7 +22,7 @@ import com.jackercito.mareagris.viewmodels.EmpresaViewModelFactory
 
 const val EMPRESA_ID = "empresa id"
 
-class EmpresasListActivity : AppCompatActivity() {
+class EmpresasListActivity : MainMenuActivity() {
     private val empresaViewModel: EmpresaViewModel by viewModels {
         EmpresaViewModelFactory((application as MareaGrisApplication).repositoryEmpresa)
     }
@@ -39,6 +40,15 @@ class EmpresasListActivity : AppCompatActivity() {
                 Toast.LENGTH_LONG
             ).show()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        super.onCreateOptionsMenu(menu)
+
+        menu.removeItem(R.id.action_fav)
+        menu.findItem(R.id.action_settings).subMenu.removeItem(R.id.action_editar)
+
+        return true
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

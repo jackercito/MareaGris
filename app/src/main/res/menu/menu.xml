@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_fav"
+        android:title="@string/add_favorito"
+        android:icon="@drawable/ic_favorite_border"
+        app:showAsAction="ifRoom">
+    </item>
+
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:icon="@drawable/ic_menu"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item android:id="@+id/action_home"
+                android:title="@string/action_home"
+                android:icon="@drawable/ic_home"
+                app:showAsAction="never">
+            </item>
+
+            <item android:id="@+id/action_editar"
+                android:title="@string/editar"
+                android:icon="@drawable/ic_baseline_settings"
+                app:showAsAction="never">
+            </item>
+
+            <item android:id="@+id/action_help"
+                android:title="@string/help"
+                android:icon="@drawable/ic_help"
+                app:showAsAction="never">
+            </item>
+        </menu>
+    </item>
+</menu>

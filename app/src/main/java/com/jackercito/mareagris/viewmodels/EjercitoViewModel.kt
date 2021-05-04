@@ -2,6 +2,7 @@ package com.jackercito.mareagris.viewmodels
 
 import androidx.lifecycle.*
 import com.jackercito.mareagris.models.Ejercito
+import com.jackercito.mareagris.models.REjercitoConteo
 import com.jackercito.mareagris.repositories.EjercitoRepository
 import kotlinx.coroutines.launch
 
@@ -14,6 +15,10 @@ class EjercitoViewModel(private val repository: EjercitoRepository): ViewModel()
 
     fun allEjercitosByJuego(uid: Long): LiveData<List<Ejercito>> {
         return repository.allEjercitosByJuego(uid).asLiveData()
+    }
+
+    fun allEjercitosConConteoByIdJuego(uid: Long): LiveData<List<REjercitoConteo>> {
+        return repository.allEjercitosConConteoByIdJuego(uid).asLiveData()
     }
 }
 

@@ -2,6 +2,7 @@ package com.jackercito.mareagris.viewmodels
 
 import androidx.lifecycle.*
 import com.jackercito.mareagris.models.Juego
+import com.jackercito.mareagris.models.RJuegoConteo
 import com.jackercito.mareagris.repositories.JuegoRepository
 import kotlinx.coroutines.launch
 
@@ -21,6 +22,10 @@ class JuegoViewModel (private val repository: JuegoRepository) : ViewModel() {
 
     fun allJuegosByEmpresa(uid: Long): LiveData<List<Juego>> {
         return repository.allJuegosByEmpresa(uid).asLiveData()
+    }
+
+    fun allJuegoConConteoByIdEmpresa(uid: Long): LiveData<List<RJuegoConteo>> {
+        return repository.allJuegoConConteoByIdEmpresa(uid).asLiveData()
     }
 }
 

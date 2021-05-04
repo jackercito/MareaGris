@@ -2,22 +2,20 @@ package com.jackercito.mareagris
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
+import android.view.Menu
 import android.widget.Button
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import com.jackercito.mareagris.ui.activities.list.EmpresasListActivity
-import com.jackercito.mareagris.viewmodels.EmpresaViewModel
-import com.jackercito.mareagris.viewmodels.EmpresaViewModelFactory
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
-    private val nuevaEmpresaActivityRequestCode = 1
-    private val empresaViewModel: EmpresaViewModel by viewModels {
-        EmpresaViewModelFactory((application as MareaGrisApplication).repositoryEmpresa)
-    }
-    private fun setupActionBar() {
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+class MainActivity : MainMenuActivity() {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        super.onCreateOptionsMenu(menu)
+
+        menu.removeItem(R.id.action_fav)
+        menu.findItem(R.id.action_settings).subMenu.removeItem(R.id.action_editar)
+        menu.findItem(R.id.action_settings).subMenu.removeItem(R.id.action_home)
+
+        return true
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,17 +27,5 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, EmpresasListActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    // this event will enable the back
-    // function to the button on press
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                return true
-            }
-        }
-        return super.onContextItemSelected(item)
     }
 }

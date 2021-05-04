@@ -2,7 +2,7 @@ package com.jackercito.mareagris.viewmodels
 
 import androidx.lifecycle.*
 import com.jackercito.mareagris.models.Faccion
-import com.jackercito.mareagris.models.TuplaConteo
+import com.jackercito.mareagris.models.RFaccionConteo
 import com.jackercito.mareagris.repositories.FaccionRespository
 import kotlinx.coroutines.launch
 
@@ -29,7 +29,7 @@ class FaccionViewModel (private val repository: FaccionRespository): ViewModel()
     }
     }*/
 
-    fun contarMinisByFaccion(uidFaccion: Long) : LiveData<List<TuplaConteo>> {
+    fun allFaccionesConConteoByIdEmpresa(uidFaccion: Long) : LiveData<List<RFaccionConteo>> {
         return repository.countAllMinisByIdFaccion(uidFaccion).asLiveData()
     }
 }

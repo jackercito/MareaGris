@@ -43,9 +43,16 @@ class EmpresaListAdapter(private val context: Context, private val onClick: (REm
         fun bind(empresa: REmpresaConteo?, context: Context){
             currentEmpresa = empresa
             empresaItemView.text = empresa?.empresa?.nombreEmpresa
-            numMinisItemView.text = context.getString(R.string.miniaturas, empresa!!.total)
+
+            val porcentajePintado = if(empresa!!.pintadas != 0){
+                100 - (empresa.pintadas!! * 100 / empresa.totalEmpresa!!)
+            } else {
+                100
+            }
+
+            numMinisItemView.text = context.getString(R.string.miniaturas, empresa.totalEmpresa)
             numMinisPintItemView.text = context.getString(R.string.completadas, empresa.pintadas)
-            numMinisMareaItemView.text = context.getString(R.string.mareagris, if(empresa.pintadas != 0) 1 - (empresa.total!! / empresa.pintadas!!) else 0)
+            numMinisMareaItemView.text = context.getString(R.string.mareagris, porcentajePintado)
 
             if(empresa.empresa?.imagen != null) {
                 val uri = empresa.empresa?.imagen

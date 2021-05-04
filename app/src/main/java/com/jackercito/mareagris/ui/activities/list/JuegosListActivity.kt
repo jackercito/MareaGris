@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.jackercito.mareagris.MainMenuActivity
 import com.jackercito.mareagris.MareaGrisApplication
 import com.jackercito.mareagris.R
 import com.jackercito.mareagris.models.Juego
+import com.jackercito.mareagris.models.RJuegoConteo
 import com.jackercito.mareagris.ui.activities.news.JuegoNewActivity
 import com.jackercito.mareagris.ui.adapter.JuegoListAdapter
 import com.jackercito.mareagris.viewmodels.JuegoViewModel
@@ -21,7 +22,7 @@ import kotlin.properties.Delegates
 
 const val JUEGO_ID = "juego id"
 
-class JuegosListActivity : AppCompatActivity() {
+class JuegosListActivity : MainMenuActivity() {
     private var currentEmpresaId by Delegates.notNull<Long>()
     private val juegoViewModel: JuegoViewModel by viewModels {
         JuegoViewModelFactory((application as MareaGrisApplication).repositoryJuego)
@@ -48,7 +49,7 @@ class JuegosListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_juego_list)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerviewJuegos)
-        val adapter = JuegoListAdapter { juego -> adapterOnClick(juego) }
+        val adapter = JuegoListAdapter(this) { juego -> adapterOnClick(juego) }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -64,7 +65,7 @@ class JuegosListActivity : AppCompatActivity() {
         }
 
         currentEmpresaId.let {
-            juegoViewModel.allJuegosByEmpresa(it).observe(this){ juego ->
+            juegoViewModel.allJuegoConConteoByIdEmpresa(it).observe(this){ juego ->
                 juego?.let { juegos ->
                     adapter.submitList(juegos)
                 }
@@ -72,9 +73,9 @@ class JuegosListActivity : AppCompatActivity() {
         }
     }
 
-    private fun adapterOnClick(juego: Juego){
+    private fun adapterOnClick(juego: RJuegoConteo){
         val intent = Intent(this, EjercitoListActivity::class.java)
-        intent.putExtra(JUEGO_ID, juego.uid)
+        intent.putExtra(JUEGO_ID, juego.juego?.uid)
         startActivity(intent)
     }
 }

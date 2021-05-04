@@ -3,14 +3,13 @@ package com.jackercito.mareagris.ui.activities.list
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.jackercito.mareagris.MainMenuActivity
 import com.jackercito.mareagris.MareaGrisApplication
 import com.jackercito.mareagris.R
 import com.jackercito.mareagris.models.Proceso
@@ -22,7 +21,7 @@ import kotlin.properties.Delegates
 
 const val PROCESO_ID = "proceso id"
 
-class ProcesoListActivity : AppCompatActivity() {
+class ProcesoListActivity : MainMenuActivity() {
     private var currentEscuadraId by Delegates.notNull<Long>()
     private val procesoViewModel: ProcesoViewModel by viewModels {
         ProcesoViewModelFactory((application as MareaGrisApplication).repositoryProceso)
@@ -56,8 +55,6 @@ class ProcesoListActivity : AppCompatActivity() {
             currentEscuadraId = bundle.getLong(ESCUADRA_ID)
         }
 
-        Log.d("currentEscuadraId", currentEscuadraId.toString())
-
         currentEscuadraId.let {
             procesoViewModel.allProcesosByEscuadra(it).observe(this) { procesos ->
                 procesos?.let { listaProcesos ->
@@ -66,7 +63,7 @@ class ProcesoListActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
+        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
             //val intent = Intent(this@ProcesoListActivity, EscuadraNewActivity)
             //resultLaunch.launch(intent)
         }

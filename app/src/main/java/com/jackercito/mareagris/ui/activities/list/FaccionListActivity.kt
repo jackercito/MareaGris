@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.jackercito.mareagris.MainMenuActivity
 import com.jackercito.mareagris.MareaGrisApplication
 import com.jackercito.mareagris.R
 import com.jackercito.mareagris.models.Faccion
+import com.jackercito.mareagris.models.RFaccionConteo
 import com.jackercito.mareagris.ui.activities.news.FaccionNewActivity
 import com.jackercito.mareagris.ui.adapter.FaccionListAdapter
 import com.jackercito.mareagris.viewmodels.FaccionViewModel
@@ -21,7 +22,7 @@ import kotlin.properties.Delegates
 
 const val FACCION_ID = "faccion id"
 
-class FaccionListActivity : AppCompatActivity() {
+class FaccionListActivity : MainMenuActivity() {
     private var currentEjercito by Delegates.notNull<Long>()
     private val faccionViewModel: FaccionViewModel by viewModels {
         FaccionViewModelFactory((application as MareaGrisApplication).repositoryFaccion)
@@ -48,7 +49,7 @@ class FaccionListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_faccion_list)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerviewFacciones)
-        val adapter = FaccionListAdapter { faccion -> adapterOnClick(faccion) }
+        val adapter = FaccionListAdapter(this) { faccion -> adapterOnClick(faccion) }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -64,15 +65,15 @@ class FaccionListActivity : AppCompatActivity() {
         }
 
         currentEjercito.let {
-            faccionViewModel.allFaccionesByEjercito(it).observe(this) { faccion ->
+            faccionViewModel.allFaccionesConConteoByIdEmpresa(it).observe(this) { faccion ->
                 faccion?.let { facciones -> adapter.submitList(facciones) }
             }
         }
     }
 
-    private fun adapterOnClick(faccion: Faccion) {
+    private fun adapterOnClick(faccion: RFaccionConteo) {
         val intent = Intent(this, EscuadraListActivity::class.java)
-        intent.putExtra(FACCION_ID, faccion.uid)
+        intent.putExtra(FACCION_ID, faccion.faccion?.uid)
         startActivity(intent)
     }
 }

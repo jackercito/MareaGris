@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.jackercito.mareagris.MainMenuActivity
 import com.jackercito.mareagris.MareaGrisApplication
 import com.jackercito.mareagris.R
 import com.jackercito.mareagris.models.Escuadra
@@ -26,7 +26,7 @@ import kotlin.properties.Delegates
 
 const val ESCUADRA_ID = "escuadra id"
 
-class EscuadraListActivity : AppCompatActivity() {
+class EscuadraListActivity : MainMenuActivity() {
     private lateinit var listaEscuadras : List<REscuadraProceso>
     private var currentFaccionId by Delegates.notNull<Long>()
     private val escuadraViewModel: EscuadraViewModel by viewModels{

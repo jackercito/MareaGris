@@ -49,7 +49,7 @@ class EmpresaNewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_empresas_new)
 
-        editEmpresaView = findViewById(R.id.edt_nueva_empresa)
+        editEmpresaView = findViewById(R.id.ti_nueva_empresa)
         imageEmpresaView = findViewById(R.id.IVPreviewImage)
 
         val btnSelectImg = findViewById<Button>(R.id.btn_selec_img)

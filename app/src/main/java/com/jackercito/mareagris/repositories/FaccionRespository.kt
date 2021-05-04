@@ -3,7 +3,7 @@ package com.jackercito.mareagris.repositories
 import androidx.annotation.WorkerThread
 import com.jackercito.mareagris.daos.FaccionDao
 import com.jackercito.mareagris.models.Faccion
-import com.jackercito.mareagris.models.TuplaConteo
+import com.jackercito.mareagris.models.RFaccionConteo
 import kotlinx.coroutines.flow.Flow
 
 class FaccionRespository (private val faccionDao: FaccionDao) {
@@ -19,7 +19,7 @@ class FaccionRespository (private val faccionDao: FaccionDao) {
         return faccionDao.getFaccionesByEjercito(idFkEjercito)
     }
 
-    fun countAllMinisByIdFaccion(uidFaccion : Long) : Flow<List<TuplaConteo>> {
-        return faccionDao.countNumeroDeMinis(uidFaccion)
+    fun countAllMinisByIdFaccion(uidFaccion : Long) : Flow<List<RFaccionConteo>> {
+        return faccionDao.allFaccionConConteoByIdJuego(uidFaccion)
     }
 }

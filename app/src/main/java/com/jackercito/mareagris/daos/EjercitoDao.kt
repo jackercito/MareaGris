@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.jackercito.mareagris.models.Ejercito
+import com.jackercito.mareagris.models.REjercitoConteo
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -24,6 +25,6 @@ interface EjercitoDao {
     @Delete
     suspend fun deleteEjercito(ejercito: Ejercito)
 
-    @Query("SELECT COUNT(uid)  FROM proceso WHERE idFkEscuadra IN (SELECT uid FROM Escuadra WHERE idFkFaccion IN (SELECT uid FROM Faccion WHERE uid = :uid))")
-    fun countNumeroDeMinis(uid: Long): Int
+    @Query("SELECT Ejercito.*, (SELECT COUNT(uid) FROM proceso WHERE idFkEscuadra IN (SELECT uid FROM Escuadra WHERE idFkFaccion IN (SELECT uid FROM Faccion WHERE idFkEjercito = Ejercito.uid))) as totalEmpresa, (SELECT COUNT(uid)  FROM proceso WHERE estado = 'Finalizado' AND idFkEscuadra IN (SELECT uid FROM Escuadra WHERE idFkFaccion IN (SELECT uid FROM Faccion WHERE idFkEjercito = Ejercito.uid))) as pintadas, (SELECT COUNT(uid) FROM proceso) as total, (SELECT COUNT(uid) FROM proceso WHERE estado = 'Finalizado') as pintadasTotal FROM Ejercito WHERE idFkJuego = :idFkJuego")
+    fun allEjercitosConConteoByIdJuego(idFkJuego: Long): Flow<List<REjercitoConteo>>
 }

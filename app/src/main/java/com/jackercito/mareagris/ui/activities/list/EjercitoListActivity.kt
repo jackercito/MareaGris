@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.jackercito.mareagris.MainMenuActivity
 import com.jackercito.mareagris.MareaGrisApplication
 import com.jackercito.mareagris.R
 import com.jackercito.mareagris.models.Ejercito
+import com.jackercito.mareagris.models.REjercitoConteo
 import com.jackercito.mareagris.ui.activities.news.EjercitoNewActivity
 import com.jackercito.mareagris.ui.adapter.EjercitoListAdapter
 import com.jackercito.mareagris.viewmodels.EjercitoViewModel
@@ -21,7 +22,7 @@ import kotlin.properties.Delegates
 
 const val EJERCITO_ID = "ejercito id"
 
-class EjercitoListActivity : AppCompatActivity() {
+class EjercitoListActivity : MainMenuActivity() {
     private var currentJuegoId by Delegates.notNull<Long>()
     private val ejercitoViewModel: EjercitoViewModel by viewModels {
         EjercitoViewModelFactory((application as MareaGrisApplication).repositoryEjercito)
@@ -48,7 +49,7 @@ class EjercitoListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_ejercito_list)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerviewEjercitos)
-        val adapter = EjercitoListAdapter{ ejercito -> adapterOnClick(ejercito) }
+        val adapter = EjercitoListAdapter(this){ ejercito -> adapterOnClick(ejercito) }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -64,7 +65,7 @@ class EjercitoListActivity : AppCompatActivity() {
         }
 
         currentJuegoId.let {
-            ejercitoViewModel.allEjercitosByJuego(it).observe(this){ ejercito ->
+            ejercitoViewModel.allEjercitosConConteoByIdJuego(it).observe(this){ ejercito ->
                 ejercito?.let{ ejercitos ->
                     adapter.submitList(ejercitos)
                 }
@@ -72,9 +73,9 @@ class EjercitoListActivity : AppCompatActivity() {
         }
     }
 
-    private fun adapterOnClick(ejercito: Ejercito) {
+    private fun adapterOnClick(ejercito: REjercitoConteo) {
         val intent = Intent(this, FaccionListActivity()::class.java)
-        intent.putExtra(EJERCITO_ID, ejercito.uid)
+        intent.putExtra(EJERCITO_ID, ejercito.ejercito?.uid)
         startActivity(intent)
     }
 }
