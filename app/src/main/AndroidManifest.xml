@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MareaGris">
-
+        <activity android:name=".ui.activities.cronometro.activity_cronometro"></activity>
         <activity
             android:name=".ui.activities.detail.ProcesoDetailActivity"
             android:parentActivityName=".ui.activities.list.ProcesoListActivity" />

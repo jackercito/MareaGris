@@ -28,7 +28,7 @@ open class MainMenuActivity: AppCompatActivity() {
         }
     }
 
-    private fun addElementToFavMenu(){
+    /*private fun addElementToFavMenu(){
 
-    }
+    }*/
 }

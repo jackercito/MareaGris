@@ -1,0 +1,60 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools"
+android:layout_width = "match_parent"
+android:layout_height = "match_parent"
+tools:context = "ui.activities.cronometro.ActivityCronometro"
+android:orientation = "vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvReloj"
+            android:layout_width="177dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="144dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnInicio"
+            android:layout_width="117dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="56dp"
+            android:text="@string/iniciar"
+            app:layout_constraintEnd_toEndOf="@+id/tvReloj"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="@+id/tvReloj"
+            app:layout_constraintTop_toBottomOf="@+id/tvReloj" />
+
+        <Button
+            android:id="@+id/btnStop"
+            android:layout_width="117dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="44dp"
+            android:text="@string/parar"
+            app:layout_constraintEnd_toEndOf="@+id/btnInicio"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="@+id/btnInicio"
+            app:layout_constraintTop_toBottomOf="@+id/btnInicio" />
+
+        <Button
+            android:id="@+id/btnRestart"
+            android:layout_width="117dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="44dp"
+            android:text="@string/reiniciar"
+            app:layout_constraintEnd_toEndOf="@+id/btnStop"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/btnStop"
+            app:layout_constraintTop_toBottomOf="@+id/btnStop" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
